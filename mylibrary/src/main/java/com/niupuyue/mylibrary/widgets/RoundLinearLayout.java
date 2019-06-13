@@ -15,13 +15,20 @@ import android.widget.LinearLayout;
 public class RoundLinearLayout extends LinearLayout {
     public RoundLinearLayout(Context context) {
         super(context);
+        initView(context);
     }
 
     public RoundLinearLayout(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        initView(context);
     }
 
     public RoundLinearLayout(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        initView(context);
+    }
+
+    private void initView(Context context){
+
     }
 }

@@ -14,13 +14,20 @@ import android.util.AttributeSet;
 public class CircleImageView extends AppCompatImageView {
     public CircleImageView(Context context) {
         super(context);
+        initView(context);
     }
 
     public CircleImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        initView(context);
     }
 
     public CircleImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        initView(context);
+    }
+
+    private void initView(Context context) {
+
     }
 }
