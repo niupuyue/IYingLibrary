@@ -36,12 +36,19 @@ public class NoSlidingViewpager extends ViewPager {
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent ev) {
-        return super.onTouchEvent(ev);
+    public boolean onInterceptTouchEvent(MotionEvent arg0) {
+
+        if (!isSliding) {
+            return false;
+        }
+        return super.onInterceptTouchEvent(arg0);
     }
 
     @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
-        return super.onInterceptTouchEvent(ev);
+    public boolean onTouchEvent(MotionEvent arg0) {
+        if (!isSliding) {
+            return false;
+        }
+        return super.onTouchEvent(arg0);
     }
 }
