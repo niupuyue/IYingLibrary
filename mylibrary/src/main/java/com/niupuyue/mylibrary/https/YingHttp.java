@@ -19,13 +19,10 @@ public class YingHttp {
     private static YingHttp instance;
 
     public static YingHttp getInstance() {
-        if (instance == null) {
-            instance = YingHttpHelper.instance;
-        }
-        return instance;
+        return instance = YingHttpHelper.instance;
     }
 
-    private void initRetrofit(){
+    private void initRetrofit() {
 
     }
 
