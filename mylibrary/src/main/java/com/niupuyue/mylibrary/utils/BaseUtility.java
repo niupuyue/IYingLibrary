@@ -3,6 +3,7 @@ package com.niupuyue.mylibrary.utils;
 import android.text.TextUtils;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -18,6 +19,32 @@ public class BaseUtility {
     public static boolean contains(String sourc, String tag) {
         if (isEmpty(sourc) || isEmpty(tag)) return false;
         return sourc.contains(tag);
+    }
+
+    public static boolean contains(List<Integer> list, int tag) {
+        if (isEmpty(list)) return false;
+        try {
+            for (Integer value : list) {
+                if (value == tag) return true;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+
+    public static boolean contains(List<String> list, String tag) {
+        if (isEmpty(list) || isEmpty(tag)) return false;
+        try {
+            for (String str : list) {
+                if (equals(str, tag)) {
+                    return true;
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return false;
     }
 
     public static boolean contains(Set<String> set, String tag) {
@@ -63,6 +90,31 @@ public class BaseUtility {
             return TextUtils.equals(a.toLowerCase(), b.toLowerCase());
         } catch (Exception ex) {
             return false;
+        }
+    }
+
+    public static void remove(List<Integer> list, int tag) {
+        remove(list, tag, false);
+    }
+
+    /**
+     * 如果isObject为true 则删除tag表示需要删除的对象，否则表示需要删除的下标
+     *
+     * @param list
+     * @param tag
+     * @param isObject
+     * @return
+     */
+    public static void remove(List<Integer> list, int tag, boolean isObject) {
+        if (isEmpty(list)) return;
+        try {
+            if (isObject) {
+                list.remove((Integer) tag);
+            } else {
+                list.remove(tag);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 
