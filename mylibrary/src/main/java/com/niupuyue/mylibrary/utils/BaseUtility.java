@@ -1,5 +1,8 @@
 package com.niupuyue.mylibrary.utils;
 
+import android.text.TextUtils;
+
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -8,13 +11,17 @@ import java.util.Set;
  * Coder: niupuyue (牛谱乐)
  * Date: 2019/6/14
  * Time: 00:31
- * Desc:
+ * Desc: 基础工具类
  * Version:
  */
 public class BaseUtility {
 
     public static boolean isEmpty(String str) {
         return str == null || str.length() == 0 || str.isEmpty();
+    }
+
+    public static boolean isEmpty(Character character) {
+        return null == character;
     }
 
     public static boolean isEmpty(List<?> list) {
@@ -31,6 +38,7 @@ public class BaseUtility {
 
     public static boolean isEmpty(Map<?, ?> map) {
         return null == map || map.isEmpty() || isEmpty(map.keySet());
+    }
 
     public static boolean contains(String sourc, String tag) {
         if (isEmpty(sourc) || isEmpty(tag)) return false;
@@ -88,8 +96,8 @@ public class BaseUtility {
         return contains(keys, tag);
     }
 
-    public static boolean equals(String str1,String str2){
-        return TextUtils.equals(str1,str2);
+    public static boolean equals(String str1, String str2) {
+        return TextUtils.equals(str1, str2);
     }
 
     public static boolean equalsIgnoreCase(String a, String b) {
