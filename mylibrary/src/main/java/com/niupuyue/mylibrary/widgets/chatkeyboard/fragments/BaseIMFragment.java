@@ -2,17 +2,18 @@ package com.niupuyue.mylibrary.widgets.chatkeyboard.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.renrui.job.baseInfo.BaseFragment;
+import org.greenrobot.eventbus.EventBus;
 
 
 /**
  * IM自定义键盘fragment的基类
  */
-public abstract class BaseIMFragment extends BaseFragment {
+public abstract class BaseIMFragment extends Fragment {
 
     private View root;
 
@@ -26,6 +27,16 @@ public abstract class BaseIMFragment extends BaseFragment {
         initViewListener();
         initDataAfterInitLayout();
         return root;
+    }
+
+    public void initEventBus() {
+        try {
+            if (!EventBus.getDefault().isRegistered(this)) {
+                EventBus.getDefault().register(this);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     public abstract int getIMLayoutId();

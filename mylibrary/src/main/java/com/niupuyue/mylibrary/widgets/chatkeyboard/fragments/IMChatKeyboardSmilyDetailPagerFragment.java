@@ -1,17 +1,14 @@
 package com.niupuyue.mylibrary.widgets.chatkeyboard.fragments;
 
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.renrui.job.R;
-import com.renrui.job.util.UtilityException;
-import com.renrui.job.widget.im.chatkeyboard.adapter.IMChatKeyboardEmojiAdapter;
-import com.renrui.job.widget.im.chatkeyboard.adapter.IMChatKeyboardEmojiViewHolder;
-import com.renrui.job.widget.im.chatkeyboard.callbacks.IMChatEmojiClickCallback;
-import com.renrui.job.widget.im.chatkeyboard.models.IMExpressionModel;
-import com.renrui.job.widget.im.chatkeyboard.utils.UtilityExpression;
-import com.renrui.libraries.util.UtilitySecurity;
+
+import com.niupuyue.mylibrary.R;
+import com.niupuyue.mylibrary.widgets.chatkeyboard.adapter.IMChatKeyboardEmojiAdapter;
+import com.niupuyue.mylibrary.widgets.chatkeyboard.adapter.IMChatKeyboardEmojiViewHolder;
+import com.niupuyue.mylibrary.widgets.chatkeyboard.callbacks.IMChatEmojiClickCallback;
+import com.niupuyue.mylibrary.widgets.chatkeyboard.models.IMExpressionModel;
+import com.niupuyue.mylibrary.widgets.chatkeyboard.utils.UtilityExpression;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +40,7 @@ public class IMChatKeyboardSmilyDetailPagerFragment extends BaseIMFragment imple
                 rvSdpfSmilyContainer = root.findViewById(R.id.rvFsdpSmilyContainer);
             }
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -69,7 +66,7 @@ public class IMChatKeyboardSmilyDetailPagerFragment extends BaseIMFragment imple
             rvSdpfSmilyContainer.setAdapter(emojiAdapter);
             rvSdpfSmilyContainer.setLayoutManager(new GridLayoutManager(getContext(), IMChatKeyboardSmilyFragment.RECYCLER_VIEW_SPAN_COUNT));
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -83,7 +80,7 @@ public class IMChatKeyboardSmilyDetailPagerFragment extends BaseIMFragment imple
             }
             this.emojiClickListener = listener;
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -98,7 +95,7 @@ public class IMChatKeyboardSmilyDetailPagerFragment extends BaseIMFragment imple
         try {
             emojiClickListener.onEmojiClick(UtilityExpression.EMOJI_TYPE_CLASSICS, IMExpressionModels.get(position).getName());
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 }

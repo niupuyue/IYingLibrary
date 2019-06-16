@@ -41,7 +41,7 @@ public class IMChatKeyboardSmilyViewPagerAdapter extends PagerAdapter {
         try {
             container.removeView(fragments.get(position).getView());
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -61,7 +61,7 @@ public class IMChatKeyboardSmilyViewPagerAdapter extends PagerAdapter {
             }
             return fragment.getView();
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
         return null;
     }

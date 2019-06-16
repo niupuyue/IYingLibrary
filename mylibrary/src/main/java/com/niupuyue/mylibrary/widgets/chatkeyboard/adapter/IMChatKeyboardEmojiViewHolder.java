@@ -60,7 +60,7 @@ public class IMChatKeyboardEmojiViewHolder extends RecyclerView.ViewHolder {
                 }
             });
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -91,7 +91,7 @@ public class IMChatKeyboardEmojiViewHolder extends RecyclerView.ViewHolder {
                 viewSparseArray.put(viewId, view);
             }
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
         return (T) view;
     }
@@ -109,7 +109,7 @@ public class IMChatKeyboardEmojiViewHolder extends RecyclerView.ViewHolder {
             if (textView == null) return this;
             textView.setText(text);
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
         return this;
     }
@@ -127,7 +127,7 @@ public class IMChatKeyboardEmojiViewHolder extends RecyclerView.ViewHolder {
             if (imageView == null) return this;
             imageView.setImageResource(resourceId);
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
         return this;
     }
@@ -138,7 +138,7 @@ public class IMChatKeyboardEmojiViewHolder extends RecyclerView.ViewHolder {
             if (imageView == null) return this;
             imageView.setImageBitmap(bitmap);
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
         return this;
     }
@@ -156,7 +156,7 @@ public class IMChatKeyboardEmojiViewHolder extends RecyclerView.ViewHolder {
             if (view == null) return this;
             view.setVisibility(visibility);
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
         return this;
     }
@@ -177,7 +177,7 @@ public class IMChatKeyboardEmojiViewHolder extends RecyclerView.ViewHolder {
             if (view == null) return this;
             view.setPadding(left, top, right, bottom);
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
         return this;
     }
@@ -197,7 +197,7 @@ public class IMChatKeyboardEmojiViewHolder extends RecyclerView.ViewHolder {
             AbsListView.LayoutParams params = new AbsListView.LayoutParams(width, height);
             imageView.setLayoutParams(params);
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
         return this;
     }
@@ -208,7 +208,7 @@ public class IMChatKeyboardEmojiViewHolder extends RecyclerView.ViewHolder {
             if (view == null) return this;
             view.setOnClickListener(clickListener);
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
         return this;
     }
@@ -219,7 +219,7 @@ public class IMChatKeyboardEmojiViewHolder extends RecyclerView.ViewHolder {
             if (view == null) return this;
             view.setOnLongClickListener(clickListener);
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
         return this;
     }

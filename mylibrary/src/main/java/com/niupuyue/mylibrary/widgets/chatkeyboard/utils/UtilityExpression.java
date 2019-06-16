@@ -63,7 +63,7 @@ public class UtilityExpression {
                         emojiId = emojiResId[index];
                     }
                 } catch (Exception ex) {
-                    UtilityException.catchException(ex);
+                    ex.printStackTrace();
                 }
                 break;
             default:
@@ -82,7 +82,7 @@ public class UtilityExpression {
         try {
             return getEmojiNameArray().contains(emojiName);
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
         return false;
     }
@@ -126,7 +126,7 @@ public class UtilityExpression {
                 index = 0;
             }
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
         return spannableString;
     }
@@ -153,7 +153,7 @@ public class UtilityExpression {
             ImageSpan span = new ImageSpan(context, scaelBitmap);// 将当前的表情生成为Span对象
             return span;
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
         return null;
     }

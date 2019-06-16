@@ -131,7 +131,7 @@ public class Phrase extends FragmentActivity implements PhraseAddDialog.OnAddPhr
                 writePhraseToLocal(HR_TAG, hrPhrases);
             }
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -266,7 +266,7 @@ public class Phrase extends FragmentActivity implements PhraseAddDialog.OnAddPhr
 
                 UtilitySecurity.setText(holder.tvPhrase, String.valueOf(position + 1 + "." + getItem(position)));
             } catch (Exception ex) {
-                UtilityException.catchException(ex);
+                ex.printStackTrace();
             }
 
             return UtilitySecurity.getView(convertView, this.getClass());

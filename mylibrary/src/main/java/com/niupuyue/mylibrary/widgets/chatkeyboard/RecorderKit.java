@@ -49,7 +49,7 @@ public class RecorderKit {
                 // 每个固定时间执行一次检测音量
                 mHandler.postDelayed(this, mVolumnPeriodTime);
             } catch (Exception ex) {
-                UtilityException.catchException(ex);
+                ex.printStackTrace();
             }
         }
     };
@@ -151,7 +151,7 @@ public class RecorderKit {
             this.mHandler.postDelayed(mTimeOut, mMaxRecordTime);
             this.mHandler.post(this.mPeriod);
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -163,7 +163,7 @@ public class RecorderKit {
                 }
             });
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -192,7 +192,7 @@ public class RecorderKit {
                 }
             });
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -222,7 +222,7 @@ public class RecorderKit {
                 this.mCallback.onSuccess(new Object[]{this.audioFile.getAbsolutePath(), (int) (duration / SECOND_PEROID)});
             }
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
 
     }
@@ -243,7 +243,7 @@ public class RecorderKit {
                 }
             });
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
 
     }
@@ -258,7 +258,7 @@ public class RecorderKit {
         try {
             return this.mRecorder.getMaxAmplitude();
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
         return 0;
     }
@@ -271,7 +271,7 @@ public class RecorderKit {
         try {
             this.audioFile.delete();
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -282,7 +282,7 @@ public class RecorderKit {
                 this.mCallback.onError(0, RRApplication.getAppContext().getString(R.string.im_record_error));
             }
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
 
     }
@@ -294,7 +294,7 @@ public class RecorderKit {
                 this.mCallback.onError(0, info);
             }
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 

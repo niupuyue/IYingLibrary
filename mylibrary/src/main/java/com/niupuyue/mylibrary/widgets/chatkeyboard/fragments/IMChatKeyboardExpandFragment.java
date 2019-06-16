@@ -10,20 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.amap.api.services.core.PoiItem;
-import com.renrui.job.R;
-import com.renrui.job.activity.hr.HrAddressChooseActivity;
-import com.renrui.job.constant.RequestJobPermissions;
-import com.renrui.job.im.event.OnSendLocationEvent;
-import com.renrui.job.im.model.content.LocationContent;
-import com.renrui.job.util.CheckRecordPermission;
-import com.renrui.job.util.UtilityException;
-import com.renrui.job.util.UtilityJobPermission;
-import com.renrui.job.widget.im.chatkeyboard.callbacks.IMChatSendMessageCallback;
-import com.renrui.job.widget.im.chatkeyboard.callbacks.IMShowRecordViewCallback;
-import com.renrui.libraries.util.LibUtility;
-import com.renrui.libraries.util.UtilityPermission;
-import com.renrui.libraries.util.UtilitySecurityListener;
+import com.niupuyue.mylibrary.R;
+import com.niupuyue.mylibrary.widgets.chatkeyboard.callbacks.IMChatSendMessageCallback;
+import com.niupuyue.mylibrary.widgets.chatkeyboard.callbacks.IMShowRecordViewCallback;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -65,7 +54,7 @@ public class IMChatKeyboardExpandFragment extends BaseIMFragment implements
             ivFePosition = root.findViewById(R.id.ivFePosition);
             ivFeRecorder = root.findViewById(R.id.ivFeRecorder);
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -83,12 +72,6 @@ public class IMChatKeyboardExpandFragment extends BaseIMFragment implements
      */
     private void gotoSetLocation(Activity activity) {
         // 调用高德地图获取当前位置，发送消息
-        try {
-            Intent intent = HrAddressChooseActivity.getIntent(activity, null, HrAddressChooseActivity.EXTRA_LOCATION_TYPE_SETLOCATION);
-            activity.startActivity(intent);
-        } catch (Exception ex) {
-            UtilityException.catchException(ex);
-        }
     }
 
     /**
@@ -108,7 +91,7 @@ public class IMChatKeyboardExpandFragment extends BaseIMFragment implements
                 replaceExpandContainer();
             }
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -124,7 +107,7 @@ public class IMChatKeyboardExpandFragment extends BaseIMFragment implements
             this.mShowRecorderUIListener = listener;
             this.mSendMessageListener = callback;
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -137,49 +120,21 @@ public class IMChatKeyboardExpandFragment extends BaseIMFragment implements
         try {
             mShowRecorderUIListener.showRecorderView();
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
-    /**
-     * 选择位置之后在此处发送定位消息
-     *
-     * @param event
-     */
-    @Subscribe
-    public void onEvent(OnSendLocationEvent event) {
-        if (event == null) return;
-        try {
-            final PoiItem poiItem = event.poiItem;
-            String address = "";
-            if (null != poiItem) {
-                address = poiItem.getCityName() + poiItem.getAdName() + poiItem.getSnippet();
-            }
-
-            // 发送定位信息
-            if (mSendMessageListener == null) return;
-            LocationContent locationContent = new LocationContent();
-            locationContent.loc = address;
-            locationContent.lat = poiItem.getLatLonPoint().getLatitude();
-            locationContent.lon = poiItem.getLatLonPoint().getLongitude();
-            mSendMessageListener.sendLocationMessage(locationContent);
-        } catch (Exception ex) {
-            UtilityException.catchException(ex);
-        }
-    }
 
     @Override
     public void onClick(View v) {
-        if (LibUtility.isFastDoubleClick())
-            return;
         switch (v.getId()) {
             case R.id.ivFeAlbum:
                 // 相册
-                UtilityJobPermission.toMultipleImage(getActivity(), false, 6, null);
+//                UtilityJobPermission.toMultipleImage(getActivity(), false, 6, null);
                 break;
             case R.id.ivFePhoto:
                 // 拍照
-                UtilityJobPermission.openCamera(getActivity(), LibUtility.dp2px(150), LibUtility.dp2px(150), false);
+//                UtilityJobPermission.openCamera(getActivity(), LibUtility.dp2px(150), LibUtility.dp2px(150), false);
                 break;
             case R.id.ivFePosition:
                 // 点击之后跳转到定位页面

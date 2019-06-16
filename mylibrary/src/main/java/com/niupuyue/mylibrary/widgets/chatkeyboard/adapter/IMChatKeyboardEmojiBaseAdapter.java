@@ -107,7 +107,7 @@ public abstract class IMChatKeyboardEmojiBaseAdapter<T> extends RecyclerView.Ada
             diffResult.dispatchUpdatesTo(this);
             this.dataList = new ArrayList<>(newDataList);
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -118,7 +118,7 @@ public abstract class IMChatKeyboardEmojiBaseAdapter<T> extends RecyclerView.Ada
                 return multiTypeSupport.getLayoutId(dataList.get(position), position);
             }
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            Uex.printStackTrace();
         }
         return DEFAULT_ITEM_VIEW_TYPE;
     }
@@ -130,7 +130,7 @@ public abstract class IMChatKeyboardEmojiBaseAdapter<T> extends RecyclerView.Ada
                 layoutId = viewType;
             }
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
         return new IMChatKeyboardEmojiViewHolder(layoutInflater.inflate(layoutId, parent, false));
     }
@@ -145,7 +145,7 @@ public abstract class IMChatKeyboardEmojiBaseAdapter<T> extends RecyclerView.Ada
                 partialBindData(holder, bundle);
             }
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -160,7 +160,7 @@ public abstract class IMChatKeyboardEmojiBaseAdapter<T> extends RecyclerView.Ada
                 holder.setLongClickListener(longClickListener);
             }
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -185,7 +185,7 @@ public abstract class IMChatKeyboardEmojiBaseAdapter<T> extends RecyclerView.Ada
             }
             return tempDataList;
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
         return null;
     }

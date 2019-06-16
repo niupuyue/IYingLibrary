@@ -10,18 +10,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.renrui.job.R;
-import com.renrui.job.im.event.OnSendVoiceEvent;
-import com.renrui.job.im.model.content.VoiceContent;
-import com.renrui.job.util.UtilityException;
-import com.renrui.job.widget.im.chatkeyboard.RecorderKit;
-import com.renrui.job.widget.im.chatkeyboard.callbacks.IMChatSendMessageCallback;
-import com.renrui.job.widget.im.chatkeyboard.callbacks.IMRecorderKitCallback;
-import com.renrui.job.widget.im.chatkeyboard.callbacks.IMRecordingStateChangeCallback;
-import com.renrui.libraries.util.CustomToast;
-import com.renrui.libraries.util.UtilitySecurity;
-import com.renrui.libraries.util.UtilitySecurityListener;
-import com.renrui.libraries.util.UtilityTime;
+import com.niupuyue.mylibrary.R;
+import com.niupuyue.mylibrary.utils.CustomToastUtility;
+import com.niupuyue.mylibrary.widgets.chatkeyboard.RecorderKit;
+import com.niupuyue.mylibrary.widgets.chatkeyboard.callbacks.IMChatSendMessageCallback;
+import com.niupuyue.mylibrary.widgets.chatkeyboard.callbacks.IMRecorderKitCallback;
+import com.niupuyue.mylibrary.widgets.chatkeyboard.callbacks.IMRecordingStateChangeCallback;
+import com.niupuyue.mylibrary.widgets.chatkeyboard.eventModel.OnSendVoiceEvent;
 
 import java.io.File;
 import java.util.Timer;
@@ -85,14 +80,14 @@ public class IMChatKeyboardRecorderFragment extends BaseIMFragment implements
                     }
                 });
             } catch (Exception ex) {
-                UtilityException.catchException(ex);
+                ex.printStackTrace();
             }
         }
 
         @Override
         public void onError(int i, String s) {
             // 失败
-            CustomToast.makeTextError(R.string.PubChattingVoice_RecordFail);
+            CustomToastUtility.makeTextError(getContext(), "");
         }
 
         @Override
@@ -101,7 +96,7 @@ public class IMChatKeyboardRecorderFragment extends BaseIMFragment implements
             try {
                 handler.post(recordImageRefresh);
             } catch (Exception ex) {
-                UtilityException.catchException(ex);
+                ex.printStackTrace();
             }
         }
     };
@@ -119,7 +114,7 @@ public class IMChatKeyboardRecorderFragment extends BaseIMFragment implements
                 setHoldToSpeakImage();
                 handler.postDelayed(recordImageFakeRefresh, SET_VOICE_IMAGE_PEER_TIME);
             } catch (Exception ex) {
-                UtilityException.catchException(ex);
+                ex.printStackTrace();
             }
         }
     };
@@ -137,7 +132,7 @@ public class IMChatKeyboardRecorderFragment extends BaseIMFragment implements
                     handler.postDelayed(recordImageFakeRefresh, SET_VOICE_IMAGE_PEER_TIME);
                 }
             } catch (Exception ex) {
-                UtilityException.catchException(ex);
+                ex.printStackTrace();
             }
 
         }
@@ -207,7 +202,7 @@ public class IMChatKeyboardRecorderFragment extends BaseIMFragment implements
             ivRfVoice = root.findViewById(R.id.ivFrVoice);
             tvRfVoice = root.findViewById(R.id.tvFrVoice);
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -234,7 +229,7 @@ public class IMChatKeyboardRecorderFragment extends BaseIMFragment implements
                 ChatRecorderKit = new RecorderKit(iWxCallback, MAX_RECORD_TIME, UtilityTime.lSecondTimes, PERIOD_RECORD_TIME);
             }
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -256,13 +251,9 @@ public class IMChatKeyboardRecorderFragment extends BaseIMFragment implements
                 return;
             }
 
-            VoiceContent voiceModel = new VoiceContent();
-            voiceModel.voice = audioPath;
-            voiceModel.dur = duration;
-            if (mListener == null) return;
-            mListener.sendVoiceMessage(voiceModel);
+            mListener.sendVoiceMessage("");
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -293,7 +284,7 @@ public class IMChatKeyboardRecorderFragment extends BaseIMFragment implements
             hasCounting = false;
             isSending = false;
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -313,7 +304,7 @@ public class IMChatKeyboardRecorderFragment extends BaseIMFragment implements
             hasCounting = true;
             timeCount++;
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -354,7 +345,7 @@ public class IMChatKeyboardRecorderFragment extends BaseIMFragment implements
             mTimer.schedule(timerTasks, 0, UtilityTime.lSecondTimes);
             isSending = true;
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -410,7 +401,7 @@ public class IMChatKeyboardRecorderFragment extends BaseIMFragment implements
             isSending = false;    // 是否正在发送
             isMoreLimit = false;   // 滑动距离是否超过200
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -436,7 +427,7 @@ public class IMChatKeyboardRecorderFragment extends BaseIMFragment implements
                 isMoreLimit = false;
             }
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -451,7 +442,7 @@ public class IMChatKeyboardRecorderFragment extends BaseIMFragment implements
             cancelEvent.status = OnSendVoiceEvent.TYPE_CANCEL;
             stateChangeCallback.changeRecorderState(cancelEvent);
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -510,7 +501,7 @@ public class IMChatKeyboardRecorderFragment extends BaseIMFragment implements
             ChatRecorderKit.stop();
             endRecord(0);
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -523,7 +514,7 @@ public class IMChatKeyboardRecorderFragment extends BaseIMFragment implements
             ChatRecorderKit.recycle();
             ChatRecorderKit = null;
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 

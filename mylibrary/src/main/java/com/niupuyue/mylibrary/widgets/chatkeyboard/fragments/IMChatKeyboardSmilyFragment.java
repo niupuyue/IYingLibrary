@@ -72,7 +72,7 @@ public class IMChatKeyboardSmilyFragment extends BaseIMFragment {
                 fragments.add(fragment4);
             }
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -88,7 +88,7 @@ public class IMChatKeyboardSmilyFragment extends BaseIMFragment {
             vpfsEmojiContanier = root.findViewById(R.id.vpFsEmojiContanier);
             llFsDot = root.findViewById(R.id.llFsDot);
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -134,7 +134,7 @@ public class IMChatKeyboardSmilyFragment extends BaseIMFragment {
                 fragment4.setData(tempEmoji4, mEmojiClickListener);
             }
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -192,7 +192,7 @@ public class IMChatKeyboardSmilyFragment extends BaseIMFragment {
                     mImageDots.add(imageView);
                 }
             } catch (Exception ex) {
-                UtilityException.catchException(ex);
+                ex.printStackTrace();
             }
         }
 
@@ -217,7 +217,7 @@ public class IMChatKeyboardSmilyFragment extends BaseIMFragment {
                     }
                 }
             } catch (Exception ex) {
-                UtilityException.catchException(ex);
+                ex.printStackTrace();
             }
         }
     }

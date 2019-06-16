@@ -30,7 +30,7 @@ public class IMRecordPlayKitManager implements IMRecordPlayerCallback {
             recorderPlayKit = RecorderPlayKit.getInstance(mContext);
             recorderPlayKit.setCallback(this);
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -54,7 +54,7 @@ public class IMRecordPlayKitManager implements IMRecordPlayerCallback {
             }
             recorderPlayKit.play(voiceModel.voice, position, isAutoPlay);
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -78,7 +78,7 @@ public class IMRecordPlayKitManager implements IMRecordPlayerCallback {
             if (autoPlayVoice == null || UtilitySecurity.isEmpty(autoPlayVoice.voice)) return;
             recorderPlayKit.play(autoPlayVoice.voice, autoPlayPosition, isAutoPlay);
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -94,7 +94,7 @@ public class IMRecordPlayKitManager implements IMRecordPlayerCallback {
             ConversationInfo info = (ConversationInfo) mAdapter.getItems().get(position);
             info.callback.recordPlayerStopUI(position);
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -110,7 +110,7 @@ public class IMRecordPlayKitManager implements IMRecordPlayerCallback {
             ConversationInfo info = (ConversationInfo) mAdapter.getItems().get(position);
             info.callback.recordPlayerStartUI(position);
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -126,7 +126,7 @@ public class IMRecordPlayKitManager implements IMRecordPlayerCallback {
             ConversationInfo info = (ConversationInfo) mAdapter.getItems().get(position);
             info.callback.recordPlayerCachingUI(position, isCache);
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 }

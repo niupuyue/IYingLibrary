@@ -82,7 +82,7 @@ public class PhraseAddDialog extends DialogFragment {
                 }
             }
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -91,7 +91,7 @@ public class PhraseAddDialog extends DialogFragment {
         try {
             super.show(manager, tag);
         } catch (Exception e) {
-            UtilityException.catchException(e);
+            e.printStackTrace();
         }
     }
 
@@ -100,7 +100,7 @@ public class PhraseAddDialog extends DialogFragment {
         try {
             dismissAllowingStateLoss();
         } catch (Exception e) {
-            UtilityException.catchException(e);
+            e.printStackTrace();
         }
     }
 }

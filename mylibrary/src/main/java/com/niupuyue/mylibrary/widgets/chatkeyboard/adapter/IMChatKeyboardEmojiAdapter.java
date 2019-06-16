@@ -78,7 +78,7 @@ public class IMChatKeyboardEmojiAdapter extends IMChatKeyboardEmojiBaseAdapter<I
                     .setViewPadding(R.id.ivIeIcon, temp / spanCount, temp / spanCount, 0, 0)
                     .setImageViewLayoutParams(R.id.ivIeIcon, emoticonSideLength, emoticonSideLength);
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 }

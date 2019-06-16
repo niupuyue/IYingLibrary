@@ -115,7 +115,7 @@ public class IMRecordingStateView extends RelativeLayout implements IMRecordingS
                 UtilitySecurity.resetVisibility(llVckrsCount, View.VISIBLE);
             }
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
         // 根据传递过来的数字决定展示的内容
         UtilitySecurity.setText(tvVckrsCount, String.valueOf(event.count));

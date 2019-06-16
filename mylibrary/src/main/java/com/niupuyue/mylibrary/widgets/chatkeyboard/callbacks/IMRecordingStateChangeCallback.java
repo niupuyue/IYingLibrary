@@ -1,6 +1,6 @@
 package com.niupuyue.mylibrary.widgets.chatkeyboard.callbacks;
 
-import com.renrui.job.im.event.OnSendVoiceEvent;
+import com.niupuyue.mylibrary.widgets.chatkeyboard.eventModel.OnSendVoiceEvent;
 
 /**
  * Desc:改变语音播放状态回调

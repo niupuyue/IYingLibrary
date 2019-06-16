@@ -445,7 +445,7 @@ public class IMChatPanelView extends LinearLayout implements
                 isKeyboardShow = true;
             }
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 

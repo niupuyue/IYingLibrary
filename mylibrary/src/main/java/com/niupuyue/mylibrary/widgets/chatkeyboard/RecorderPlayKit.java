@@ -101,7 +101,7 @@ public class RecorderPlayKit implements SensorEventListener {
             }
 
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -111,7 +111,7 @@ public class RecorderPlayKit implements SensorEventListener {
             if (mediaPlayer == null) return;
             mediaPlayer.setOnCompletionListener(mediaPlayCompletionListener);
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -164,7 +164,7 @@ public class RecorderPlayKit implements SensorEventListener {
                 }
             }
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
             this.mediaPlayer = null;
             CustomToast.makeTextError(R.string.im_chat_play_record_error);
         }
@@ -214,7 +214,7 @@ public class RecorderPlayKit implements SensorEventListener {
                 }
             });
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -239,7 +239,7 @@ public class RecorderPlayKit implements SensorEventListener {
                 }
             });
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -251,7 +251,7 @@ public class RecorderPlayKit implements SensorEventListener {
         try {
             sensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -267,7 +267,7 @@ public class RecorderPlayKit implements SensorEventListener {
             if (mWakeLock != null && mWakeLock.isHeld())
                 mWakeLock.release();
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -287,7 +287,7 @@ public class RecorderPlayKit implements SensorEventListener {
             callback.recorderPlayerStop(currPosition);
             this.mediaPlayer.stop();
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -299,7 +299,7 @@ public class RecorderPlayKit implements SensorEventListener {
         try {
             this.mediaPlayer.pause();
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -312,7 +312,7 @@ public class RecorderPlayKit implements SensorEventListener {
         try {
             return this.mediaPlayer != null && this.mediaPlayer.isPlaying();
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
         return false;
     }
@@ -327,7 +327,7 @@ public class RecorderPlayKit implements SensorEventListener {
             this.mediaPlayer.stop();
             this.mediaPlayer.release();
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
@@ -353,7 +353,7 @@ public class RecorderPlayKit implements SensorEventListener {
                     mWakeLock.release();
             }
         } catch (Exception ex) {
-            UtilityException.catchException(ex);
+            ex.printStackTrace();
         }
     }
 
