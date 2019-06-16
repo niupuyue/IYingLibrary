@@ -632,17 +632,17 @@ public class IMChatPanelView extends LinearLayout implements
     // 表情和更多按钮 切换check状态
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-        switch (compoundButton.getId()) {
-            case R.id.cbVckbSmily:
-                if (isChecked) smilyCheckBoxChecked();
-                else smilyCheckBoxUnchecked();
-                isNeedShowKeyBoard = true;
-                break;
-            case R.id.cbVckbMore:
-                if (isChecked) expandCheckBoxChecked();
-                else expandCheckBoxUnchecked();
-                isNeedShowKeyBoard = true;
-                break;
+        int i = compoundButton.getId();
+        if (i == R.id.cbVckbSmily) {
+            if (isChecked) smilyCheckBoxChecked();
+            else smilyCheckBoxUnchecked();
+            isNeedShowKeyBoard = true;
+
+        } else if (i == R.id.cbVckbMore) {
+            if (isChecked) expandCheckBoxChecked();
+            else expandCheckBoxUnchecked();
+            isNeedShowKeyBoard = true;
+
         }
     }
 
@@ -688,7 +688,6 @@ public class IMChatPanelView extends LinearLayout implements
         if (getSendBtn() == null || getMoreCheckBox() == null || mActivity == null) return;
         // 如果内容发生改变，隐藏更多按钮，显示发送按钮
         if (s.length() > MAX_INPUT_TEXT_LENGHT) {
-            CustomToastUtility.makeTextError();
             return;
         }
         if (!BaseUtility.isEmpty(s)) {
@@ -712,14 +711,14 @@ public class IMChatPanelView extends LinearLayout implements
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         if (getSmilyCkeckBox() == null || getMoreCheckBox() == null) return false;
-        switch (v.getId()) {
-            case R.id.etVckbInput:
-                if (event.getAction() == MotionEvent.ACTION_UP && getFragmentContainer() != null && isFragmentContainerVisiable()) {
-                    setFragmentContainerVisiable(false, false);
-                    getSmilyCkeckBox().setChecked(false);
-                    getMoreCheckBox().setChecked(false);
-                }
-                break;
+        int i = v.getId();
+        if (i == R.id.etVckbInput) {
+            if (event.getAction() == MotionEvent.ACTION_UP && getFragmentContainer() != null && isFragmentContainerVisiable()) {
+                setFragmentContainerVisiable(false, false);
+                getSmilyCkeckBox().setChecked(false);
+                getMoreCheckBox().setChecked(false);
+            }
+
         }
         return false;
     }
@@ -838,13 +837,13 @@ public class IMChatPanelView extends LinearLayout implements
 //    }
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.tvVckbPhrase:// 常用语
-                gotoPhrase();
-                break;
-            case R.id.btnVckbSendBtn:// 发送按钮
-                clickSendMsg();
-                break;
+        int i = view.getId();
+        if (i == R.id.tvVckbPhrase) {
+            gotoPhrase();
+
+        } else if (i == R.id.btnVckbSendBtn) {
+            clickSendMsg();
+
         }
     }
 

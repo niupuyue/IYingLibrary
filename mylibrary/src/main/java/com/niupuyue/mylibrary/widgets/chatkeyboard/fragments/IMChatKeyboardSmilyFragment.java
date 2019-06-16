@@ -8,12 +8,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.renrui.job.R;
-import com.renrui.job.util.UtilityException;
-import com.renrui.job.widget.im.chatkeyboard.adapter.IMChatKeyboardSmilyViewPagerAdapter;
-import com.renrui.job.widget.im.chatkeyboard.callbacks.IMChatEmojiClickCallback;
-import com.renrui.job.widget.im.chatkeyboard.models.IMExpressionModel;
-import com.renrui.job.widget.im.chatkeyboard.utils.UtilityExpression;
+
+import com.niupuyue.mylibrary.R;
+import com.niupuyue.mylibrary.widgets.chatkeyboard.adapter.IMChatKeyboardSmilyViewPagerAdapter;
+import com.niupuyue.mylibrary.widgets.chatkeyboard.callbacks.IMChatEmojiClickCallback;
+import com.niupuyue.mylibrary.widgets.chatkeyboard.models.IMExpressionModel;
+import com.niupuyue.mylibrary.widgets.chatkeyboard.utils.UtilityExpression;
 
 import java.util.ArrayList;
 import java.util.List;
