@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/includeChatKeyboardBar"
+        layout="@layout/view_chat_keyboard_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/llFcExpandContainer" />
+
+    <!--更多页面的容器，用来放置表情，更多，语音Fragment-->
+    <RelativeLayout
+        android:id="@+id/rlVckExpandContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:visibility="gone" />
+
+</LinearLayout>

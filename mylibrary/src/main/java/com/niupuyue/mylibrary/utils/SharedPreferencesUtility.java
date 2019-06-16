@@ -17,6 +17,8 @@ public class SharedPreferencesUtility {
     private static final String TAG = SharedPreferences.class.getSimpleName();
     private static final String SHAREDPREFERENCES_NAME = "app_sharedpreference";
 
+    public static final String INT_KEYBOARD_HEIGHT = "keyboard_height";
+
     public static void writeString(Context context, String key, String value) {
         if (context == null) return;
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHAREDPREFERENCES_NAME, Context.MODE_PRIVATE);

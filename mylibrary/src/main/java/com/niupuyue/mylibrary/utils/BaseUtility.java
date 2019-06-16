@@ -20,7 +20,7 @@ public class BaseUtility {
         return str == null || str.length() == 0 || str.isEmpty();
     }
 
-    public static boolean isEmpty(Character character) {
+    public static boolean isEmpty(CharSequence character) {
         return null == character;
     }
 
