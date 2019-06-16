@@ -115,10 +115,9 @@ public class ScreenUtility {
      * @param value
      * @return
      */
-    public static int dp2px(int value) {
-        int result = 0;
-
-        return result;
+    public static int dp2px(Context context, int value) {
+        float scale = (float) context.getResources().getDisplayMetrics().densityDpi;
+        return (int) (value * (scale / 160.0F) + 0.5F);
     }
 
     /**

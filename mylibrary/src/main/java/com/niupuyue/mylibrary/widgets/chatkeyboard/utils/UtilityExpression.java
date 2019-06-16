@@ -9,9 +9,9 @@ import android.text.SpannableString;
 import android.text.style.ImageSpan;
 import android.widget.TextView;
 
-import com.renrui.job.R;
-import com.renrui.job.util.UtilityException;
-import com.renrui.libraries.util.UtilitySecurity;
+
+import com.niupuyue.mylibrary.R;
+import com.niupuyue.mylibrary.utils.BaseUtility;
 
 import java.util.Arrays;
 import java.util.List;
@@ -56,7 +56,7 @@ public class UtilityExpression {
             case EMOJI_TYPE_CLASSICS:
                 try {
                     int index = -1;
-                    if (!UtilitySecurity.isEmpty(emojiNameArray) && emojiNameArray.contains(emojiName)) {
+                    if (!BaseUtility.isEmpty(emojiNameArray) && emojiNameArray.contains(emojiName)) {
                         index = emojiNameArray.indexOf(emojiName);
                     }
                     if (index >= 0) {
@@ -97,14 +97,14 @@ public class UtilityExpression {
      * @return 转换之后的字符
      */
     public static SpannableString getEmojiContent(Context context, TextView textView, int emotionType, String source) {
-        if (UtilitySecurity.isEmpty(source)) source = "";
+        if (BaseUtility.isEmpty(source)) source = "";
         String emojiName;
         ImageSpan span;
         SpannableString spannableString = null;
         try {
             spannableString = new SpannableString(source);
             List<String> emojiNameArray = UtilityExpression.getInstance().getEmojiNameArray();
-            if (UtilitySecurity.isEmpty(emojiNameArray)) {
+            if (BaseUtility.isEmpty(emojiNameArray)) {
                 return spannableString;
             }
             int index = 0;// 查询需要执行的字符串中存在表情的起始位置

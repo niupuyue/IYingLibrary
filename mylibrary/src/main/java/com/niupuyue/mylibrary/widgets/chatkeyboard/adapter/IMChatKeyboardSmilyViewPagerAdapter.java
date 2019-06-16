@@ -7,8 +7,7 @@ import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.renrui.job.util.UtilityException;
-import com.renrui.libraries.util.UtilitySecurity;
+import com.niupuyue.mylibrary.utils.BaseUtility;
 
 import java.util.List;
 
@@ -27,7 +26,7 @@ public class IMChatKeyboardSmilyViewPagerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        if (UtilitySecurity.isEmpty(fragments)) return 0;
+        if (BaseUtility.isEmpty(fragments)) return 0;
         return fragments.size();
     }
 

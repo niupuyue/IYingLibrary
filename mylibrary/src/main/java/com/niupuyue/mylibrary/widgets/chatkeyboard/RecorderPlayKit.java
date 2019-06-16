@@ -9,16 +9,15 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.PowerManager;
 
+
 import com.danikula.videocache.CacheListener;
 import com.danikula.videocache.HttpProxyCacheServer;
-import com.renrui.job.R;
-import com.renrui.job.util.UtilityException;
-import com.renrui.job.widget.im.chatkeyboard.callbacks.IMRecordPlayerCallback;
-import com.renrui.job.widget.im.chatkeyboard.utils.UtilityRecordCache;
-import com.renrui.libraries.util.CustomToast;
-import com.renrui.libraries.util.LibUtility;
-import com.renrui.libraries.util.Logger;
-import com.renrui.libraries.util.UtilitySecurity;
+import com.niupuyue.mylibrary.utils.BaseUtility;
+import com.niupuyue.mylibrary.utils.CustomToastUtility;
+import com.niupuyue.mylibrary.utils.LoggerUtility;
+import com.niupuyue.mylibrary.utils.ScreenUtility;
+import com.niupuyue.mylibrary.widgets.chatkeyboard.callbacks.IMRecordPlayerCallback;
+import com.niupuyue.mylibrary.widgets.chatkeyboard.utils.UtilityRecordCache;
 
 import java.io.File;
 
@@ -133,8 +132,8 @@ public class RecorderPlayKit implements SensorEventListener {
      */
     public void play(String path, final int position, boolean isAutoPlay) {
         if (position < 0) return;
-        if (UtilitySecurity.isEmpty(path) || mAudioManager == null || mediaPlayer == null) {
-            CustomToast.makeTextError(R.string.im_chat_play_record_error);
+        if (BaseUtility.isEmpty(path) || mAudioManager == null || mediaPlayer == null) {
+//            CustomToastUtility.makeTextError("播放失败，语音文件已损坏");
             return;
         }
         try {
@@ -144,7 +143,7 @@ public class RecorderPlayKit implements SensorEventListener {
                 if (mAudioManager != null) {
                     mAudioManager.abandonAudioFocus(null);// 关闭audio focus
                 }
-                if (!UtilitySecurity.equals(currPath, path)) {
+                if (!BaseUtility.equals(currPath, path)) {
                     // 再次点击的语音和正在播放的语音不是同一个，则将正在播放的语音停止，播放新语音
                     stop(false);
                     mediaPlayer.reset();
@@ -166,7 +165,7 @@ public class RecorderPlayKit implements SensorEventListener {
         } catch (Exception ex) {
             ex.printStackTrace();
             this.mediaPlayer = null;
-            CustomToast.makeTextError(R.string.im_chat_play_record_error);
+//            CustomToastUtility.makeTextError("播放失败，语音文件已经损坏");
         }
         this.currPath = path;
         this.currPosition = position;
@@ -191,7 +190,7 @@ public class RecorderPlayKit implements SensorEventListener {
                     } else {
                         callback.recorderPlayerCaching(position, true);
                     }
-                    Logger.e("NPL", "缓存百分比=" + percentsAvailable);
+                    LoggerUtility.e("NPL", "缓存百分比=" + percentsAvailable);
                 }
             }, path);
 
@@ -370,6 +369,6 @@ public class RecorderPlayKit implements SensorEventListener {
     private static int RECORD_LENGTH_DOUBLE = 2;
 
     public static int calculAudioMessageWidth(int duration) {
-        return LibUtility.dp2px(RECORD_MIN_LENGTH + duration * RECORD_LENGTH_DOUBLE);
+        return ScreenUtility.dp2px(RECORD_MIN_LENGTH + duration * RECORD_LENGTH_DOUBLE);
     }
 }

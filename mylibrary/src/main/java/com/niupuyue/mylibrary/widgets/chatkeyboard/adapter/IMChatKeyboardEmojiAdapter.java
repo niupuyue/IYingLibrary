@@ -5,12 +5,11 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
-import com.renrui.job.R;
-import com.renrui.job.util.UtilityException;
-import com.renrui.job.widget.im.chatkeyboard.fragments.IMChatKeyboardSmilyFragment;
-import com.renrui.job.widget.im.chatkeyboard.models.IMExpressionModel;
-import com.renrui.job.widget.im.chatkeyboard.utils.ScreenUtil;
-import com.renrui.libraries.util.LibUtility;
+import com.niupuyue.mylibrary.R;
+import com.niupuyue.mylibrary.utils.ScreenUtility;
+import com.niupuyue.mylibrary.widgets.chatkeyboard.fragments.IMChatKeyboardSmilyFragment;
+import com.niupuyue.mylibrary.widgets.chatkeyboard.models.IMExpressionModel;
+import com.niupuyue.mylibrary.widgets.chatkeyboard.utils.ScreenUtil;
 
 import java.util.List;
 
@@ -68,7 +67,7 @@ public class IMChatKeyboardEmojiAdapter extends IMChatKeyboardEmojiBaseAdapter<I
             // 屏幕宽度
             int screenWidth = ScreenUtil.getScreenWidth((Activity) context);
             // 设置表情间距
-            int spacing = LibUtility.dp2px(EMOJI_PADDING_DP);
+            int spacing = ScreenUtility.dp2px(context, EMOJI_PADDING_DP);
             // 设置表情间距偏移量
             int temp = spacing * (spanCount + 1);
             // 设置表情图片实际宽高

@@ -4,11 +4,8 @@ import android.media.MediaRecorder;
 import android.os.Handler;
 import android.os.HandlerThread;
 
-import com.renrui.job.R;
-import com.renrui.job.application.RRApplication;
-import com.renrui.job.util.UtilityException;
-import com.renrui.job.util.UtilityFile;
-import com.renrui.job.widget.im.chatkeyboard.callbacks.IMRecorderKitCallback;
+
+import com.niupuyue.mylibrary.widgets.chatkeyboard.callbacks.IMRecorderKitCallback;
 
 import java.io.File;
 import java.io.IOException;
@@ -74,7 +71,7 @@ public class RecorderKit {
                 public void run() {
                     audioFile = UtilityFile.createAudioFile(UtilityFile.getFilePath());
                     if (audioFile == null) {
-                        onError(RRApplication.getAppContext().getString(R.string.im_record_create_file_error));
+                        onError("录制语音错误");
                     } else if (!isStart) {
                         try {
                             if (mRecorder == null) {
@@ -215,11 +212,11 @@ public class RecorderKit {
             this.isStart = false;
             long duration = System.currentTimeMillis() - this.mDuration;
             if (duration < this.mMinRecordTime) {
-                this.onError(RRApplication.getAppContext().getString(R.string.im_record_time_short));
+                this.onError("录制语音时间过短");
             } else if (this.audioFile == null) {
-                this.onError(RRApplication.getAppContext().getString(R.string.im_record_create_file_error));
+                this.onError("语音文件创建失败");
             } else if (this.mCallback != null) {
-                this.mCallback.onSuccess(new Object[]{this.audioFile.getAbsolutePath(), (int) (duration / SECOND_PEROID)});
+                this.mCallback.onSuccess(this.audioFile.getAbsolutePath(), (int) (duration / SECOND_PEROID));
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -279,7 +276,7 @@ public class RecorderKit {
         try {
             deleteFile();
             if (this.mCallback != null) {
-                this.mCallback.onError(0, RRApplication.getAppContext().getString(R.string.im_record_error));
+                this.mCallback.onError(0, "语音录制失败");
             }
         } catch (Exception ex) {
             ex.printStackTrace();

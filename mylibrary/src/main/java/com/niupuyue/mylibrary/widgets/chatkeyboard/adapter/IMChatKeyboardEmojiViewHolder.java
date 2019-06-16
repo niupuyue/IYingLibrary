@@ -10,7 +10,6 @@ import android.widget.AbsListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.renrui.job.util.UtilityException;
 
 /**
  * Desc: 表情显示Viewholder

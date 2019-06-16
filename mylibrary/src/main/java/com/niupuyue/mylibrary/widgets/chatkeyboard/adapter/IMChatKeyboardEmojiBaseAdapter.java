@@ -8,8 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.renrui.job.util.UtilityException;
-import com.renrui.libraries.util.UtilitySecurity;
+
+import com.niupuyue.mylibrary.utils.BaseUtility;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +40,7 @@ public abstract class IMChatKeyboardEmojiBaseAdapter<T> extends RecyclerView.Ada
 
         @Override
         public int getNewListSize() {
-            return UtilitySecurity.isEmpty(newDataList) ? 0 : newDataList.size();
+            return BaseUtility.isEmpty(newDataList) ? 0 : newDataList.size();
         }
 
         @Override
@@ -118,7 +118,7 @@ public abstract class IMChatKeyboardEmojiBaseAdapter<T> extends RecyclerView.Ada
                 return multiTypeSupport.getLayoutId(dataList.get(position), position);
             }
         } catch (Exception ex) {
-            Uex.printStackTrace();
+            ex.printStackTrace();
         }
         return DEFAULT_ITEM_VIEW_TYPE;
     }
