@@ -20,8 +20,8 @@ public class ScreenUtility {
     /**
      * 获取屏幕宽度
      */
-    public static int getScreenWidth(Context context) {
-        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+    public static int getScreenWidth() {
+        WindowManager wm = (WindowManager) LibraryConstants.getContext().getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics outMetrics = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(outMetrics);
         return outMetrics.widthPixels;
@@ -30,11 +30,10 @@ public class ScreenUtility {
     /**
      * 获取屏幕高度
      *
-     * @param context
      * @return
      */
-    public static int getScreenHeight(Context context) {
-        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+    public static int getScreenHeight() {
+        WindowManager wm = (WindowManager) LibraryConstants.getContext().getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics outMetrics = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(outMetrics);
         return outMetrics.heightPixels;
@@ -43,16 +42,15 @@ public class ScreenUtility {
     /**
      * 获取状态栏高度
      *
-     * @param context
      * @return
      */
-    public static int getStatusHeight(Context context) {
+    public static int getStatusHeight() {
         int statusHeight = -1;
         try {
             Class<?> clazz = Class.forName("com.android.internal.R$dimen");
             Object object = clazz.newInstance();
             int height = Integer.parseInt(clazz.getField("status_bar_height").get(object).toString());
-            statusHeight = context.getResources().getDimensionPixelSize(height);
+            statusHeight = LibraryConstants.getContext().getResources().getDimensionPixelSize(height);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -70,8 +68,8 @@ public class ScreenUtility {
         view.setDrawingCacheEnabled(true);
         view.buildDrawingCache();
         Bitmap bmp = view.getDrawingCache();
-        int width = getScreenWidth(activity);
-        int height = getScreenHeight(activity);
+        int width = getScreenWidth();
+        int height = getScreenHeight();
         Bitmap bp = null;
         bp = Bitmap.createBitmap(bmp, 0, 0, width, height);
         view.destroyDrawingCache();
@@ -92,8 +90,8 @@ public class ScreenUtility {
         Rect frame = new Rect();
         activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
         int statusBarHeight = frame.top;
-        int width = getScreenWidth(activity);
-        int height = getScreenHeight(activity);
+        int width = getScreenWidth();
+        int height = getScreenHeight();
         Bitmap bp = null;
         bp = Bitmap.createBitmap(bmp, 0, statusBarHeight, width, height - statusBarHeight);
         view.destroyDrawingCache();
@@ -102,10 +100,8 @@ public class ScreenUtility {
 
     /**
      * 获取屏幕分辨率
-     *
-     * @param context
      */
-    public static void getScreen(Context context) {
+    public static void getScreen() {
 
     }
 
@@ -115,8 +111,8 @@ public class ScreenUtility {
      * @param value
      * @return
      */
-    public static int dp2px(Context context, int value) {
-        float scale = (float) context.getResources().getDisplayMetrics().densityDpi;
+    public static int dp2px(int value) {
+        float scale = (float) LibraryConstants.getContext().getResources().getDisplayMetrics().densityDpi;
         return (int) (value * (scale / 160.0F) + 0.5F);
     }
 

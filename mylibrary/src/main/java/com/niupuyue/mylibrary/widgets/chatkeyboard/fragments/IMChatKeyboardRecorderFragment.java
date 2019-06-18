@@ -11,7 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.niupuyue.mylibrary.R;
+import com.niupuyue.mylibrary.utils.BaseUtility;
 import com.niupuyue.mylibrary.utils.CustomToastUtility;
+import com.niupuyue.mylibrary.utils.ListenerUtility;
 import com.niupuyue.mylibrary.widgets.chatkeyboard.RecorderKit;
 import com.niupuyue.mylibrary.widgets.chatkeyboard.callbacks.IMChatSendMessageCallback;
 import com.niupuyue.mylibrary.widgets.chatkeyboard.callbacks.IMRecorderKitCallback;
@@ -208,7 +210,7 @@ public class IMChatKeyboardRecorderFragment extends BaseIMFragment implements
 
     @Override
     public void initViewListener() {
-        UtilitySecurityListener.setOnTouchListener(ivRfVoice, this);
+        ListenerUtility.setOnTouchListener(ivRfVoice, this);
     }
 
     @Override
@@ -313,7 +315,7 @@ public class IMChatKeyboardRecorderFragment extends BaseIMFragment implements
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void startRecord() {
-        UtilitySecurity.setImageResource(ivRfVoice, R.drawable.icon_im_recoder_press);
+        BaseUtility.setImageResource(ivRfVoice, R.drawable.icon_im_recoder_press);
         startRecordOperation();
     }
 
@@ -359,7 +361,7 @@ public class IMChatKeyboardRecorderFragment extends BaseIMFragment implements
         if (ChatRecorderKit == null) return;
         try {
             // 修改图片(此处因为我们给图片添加了onTouchEvent事件所以无法再布局文件中修改)
-            UtilitySecurity.setImageResource(ivRfVoice, R.drawable.icon_im_recoder_normal);
+            BaseUtility.setImageResource(ivRfVoice, R.drawable.icon_im_recoder_normal);
             // 获取手指抬起的时间
             endTime = System.currentTimeMillis();
             // 获取移动的垂直距离

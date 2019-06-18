@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.niupuyue.mylibrary.R;
+import com.niupuyue.mylibrary.utils.BaseUtility;
 import com.niupuyue.mylibrary.widgets.chatkeyboard.callbacks.IMRecordingStateChangeCallback;
 import com.niupuyue.mylibrary.widgets.chatkeyboard.eventModel.OnSendVoiceEvent;
 
@@ -76,28 +77,28 @@ public class IMRecordingStateView extends RelativeLayout implements IMRecordingS
         }
         switch (event.showImageType) {
             case OnSendVoiceEvent.SHOW_IMAGE_TYPE_1:
-                UtilitySecurity.setImageResource(ivVckrsSending, R.drawable.icon_im_recorder_anim1);
+                BaseUtility.setImageResource(ivVckrsSending, R.drawable.icon_im_recorder_anim1);
                 break;
             case OnSendVoiceEvent.SHOW_IMAGE_TYPE_2:
-                UtilitySecurity.setImageResource(ivVckrsSending, R.drawable.icon_im_recorder_anim2);
+                BaseUtility.setImageResource(ivVckrsSending, R.drawable.icon_im_recorder_anim2);
                 break;
             case OnSendVoiceEvent.SHOW_IMAGE_TYPE_3:
-                UtilitySecurity.setImageResource(ivVckrsSending, R.drawable.icon_im_recorder_anim3);
+                BaseUtility.setImageResource(ivVckrsSending, R.drawable.icon_im_recorder_anim3);
                 break;
             case OnSendVoiceEvent.SHOW_IMAGE_TYPE_4:
-                UtilitySecurity.setImageResource(ivVckrsSending, R.drawable.icon_im_recorder_anim4);
+                BaseUtility.setImageResource(ivVckrsSending, R.drawable.icon_im_recorder_anim4);
                 break;
             case OnSendVoiceEvent.SHOW_IMAGE_TYPE_5:
-                UtilitySecurity.setImageResource(ivVckrsSending, R.drawable.icon_im_recorder_anim5);
+                BaseUtility.setImageResource(ivVckrsSending, R.drawable.icon_im_recorder_anim5);
                 break;
         }
     }
 
     // 正在录制语音
     private void recording() {
-        UtilitySecurity.resetVisibility(ivVckrsSending, View.VISIBLE);
-        UtilitySecurity.resetVisibility(ivVckrsCancel, View.INVISIBLE);
-        UtilitySecurity.resetVisibility(llVckrsCount, View.INVISIBLE);
+        BaseUtility.resetVisibility(ivVckrsSending, View.VISIBLE);
+        BaseUtility.resetVisibility(ivVckrsCancel, View.INVISIBLE);
+        BaseUtility.resetVisibility(llVckrsCount, View.INVISIBLE);
     }
 
     // 录音倒计时
@@ -105,41 +106,41 @@ public class IMRecordingStateView extends RelativeLayout implements IMRecordingS
         try {
             if (!event.isMoreLimit) {
                 // 如果距离小于200 显示内容
-                UtilitySecurity.resetVisibility(ivVckrsSending, View.INVISIBLE);
-                UtilitySecurity.resetVisibility(ivVckrsCancel, View.INVISIBLE);
-                UtilitySecurity.resetVisibility(llVckrsCount, View.VISIBLE);
+                BaseUtility.resetVisibility(ivVckrsSending, View.INVISIBLE);
+                BaseUtility.resetVisibility(ivVckrsCancel, View.INVISIBLE);
+                BaseUtility.resetVisibility(llVckrsCount, View.VISIBLE);
             }
             if (event.count + BEGIN_TIME == LIMIT_TIME && !event.isMoreLimit) {
-                UtilitySecurity.resetVisibility(ivVckrsSending, View.INVISIBLE);
-                UtilitySecurity.resetVisibility(ivVckrsCancel, View.INVISIBLE);
-                UtilitySecurity.resetVisibility(llVckrsCount, View.VISIBLE);
+                BaseUtility.resetVisibility(ivVckrsSending, View.INVISIBLE);
+                BaseUtility.resetVisibility(ivVckrsCancel, View.INVISIBLE);
+                BaseUtility.resetVisibility(llVckrsCount, View.VISIBLE);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
         // 根据传递过来的数字决定展示的内容
-        UtilitySecurity.setText(tvVckrsCount, String.valueOf(event.count));
+        BaseUtility.setText(tvVckrsCount, String.valueOf(event.count));
     }
 
     // 取消录音
     private void recordCancel() {
-        UtilitySecurity.resetVisibility(ivVckrsCancel, View.VISIBLE);
-        UtilitySecurity.resetVisibility(ivVckrsSending, View.INVISIBLE);
-        UtilitySecurity.resetVisibility(llVckrsCount, View.INVISIBLE);
+        BaseUtility.resetVisibility(ivVckrsCancel, View.VISIBLE);
+        BaseUtility.resetVisibility(ivVckrsSending, View.INVISIBLE);
+        BaseUtility.resetVisibility(llVckrsCount, View.INVISIBLE);
     }
 
     // 录音结束
     private void recordStop() {
-        UtilitySecurity.resetVisibility(ivVckrsCancel, View.GONE);
-        UtilitySecurity.resetVisibility(ivVckrsSending, View.GONE);
-        UtilitySecurity.resetVisibility(llVckrsCount, View.GONE);
+        BaseUtility.resetVisibility(ivVckrsCancel, View.GONE);
+        BaseUtility.resetVisibility(ivVckrsSending, View.GONE);
+        BaseUtility.resetVisibility(llVckrsCount, View.GONE);
     }
 
     // 语音回到倒计时状态 (正在倒计时，手指向上滑动，显示取消录音的样式)
     private void recordRebackCounting() {
-        UtilitySecurity.resetVisibility(ivVckrsCancel, View.INVISIBLE);
-        UtilitySecurity.resetVisibility(ivVckrsSending, View.INVISIBLE);
-        UtilitySecurity.resetVisibility(llVckrsCount, View.VISIBLE);
+        BaseUtility.resetVisibility(ivVckrsCancel, View.INVISIBLE);
+        BaseUtility.resetVisibility(ivVckrsSending, View.INVISIBLE);
+        BaseUtility.resetVisibility(llVckrsCount, View.VISIBLE);
     }
 
     @Override

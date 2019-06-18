@@ -491,13 +491,6 @@ public class IMChatPanelView extends LinearLayout implements
      */
     // 进入常用语界面
     private void gotoPhrase() {
-        try {
-            Intent intent = new Intent(mContext, Phrase.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            mContext.startActivity(intent);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
     }
 
     // 点击发送按钮

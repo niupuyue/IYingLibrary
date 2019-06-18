@@ -4,6 +4,7 @@ import android.view.View;
 
 
 import com.niupuyue.mylibrary.R;
+import com.niupuyue.mylibrary.utils.BaseUtility;
 import com.niupuyue.mylibrary.widgets.chatkeyboard.adapter.IMChatKeyboardEmojiAdapter;
 import com.niupuyue.mylibrary.widgets.chatkeyboard.adapter.IMChatKeyboardEmojiViewHolder;
 import com.niupuyue.mylibrary.widgets.chatkeyboard.callbacks.IMChatEmojiClickCallback;
@@ -49,7 +50,7 @@ public class IMChatKeyboardSmilyDetailPagerFragment extends BaseIMFragment imple
      * 初始化数据
      */
     public void initDataAfterInitLayout() {
-        if (UtilitySecurity.isEmpty(IMExpressionModels)) return;
+        if (BaseUtility.isEmpty(IMExpressionModels)) return;
         try {
             if (IMExpressionModels.size() != COUNT_EMOJI_FULL) {
                 int addCount = (IMExpressionModels.size() - OFFSET_EMOJI_NOT_FULL) % IMChatKeyboardSmilyFragment.RECYCLER_VIEW_SPAN_COUNT;
@@ -73,7 +74,7 @@ public class IMChatKeyboardSmilyDetailPagerFragment extends BaseIMFragment imple
     public void setData(List<IMExpressionModel> IMExpressionModels, IMChatEmojiClickCallback listener) {
         if (listener == null) return;
         try {
-            if (!UtilitySecurity.isEmpty(IMExpressionModels)) {
+            if (!BaseUtility.isEmpty(IMExpressionModels)) {
                 this.IMExpressionModels = IMExpressionModels;
             } else {
                 IMExpressionModels = new ArrayList<>();

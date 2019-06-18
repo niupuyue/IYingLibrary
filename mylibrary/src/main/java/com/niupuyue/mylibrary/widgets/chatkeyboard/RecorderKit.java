@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.HandlerThread;
 
 
+import com.niupuyue.mylibrary.utils.FileUtility;
 import com.niupuyue.mylibrary.widgets.chatkeyboard.callbacks.IMRecorderKitCallback;
 
 import java.io.File;
@@ -69,7 +70,7 @@ public class RecorderKit {
         try {
             this.mHandler.post(new Runnable() {
                 public void run() {
-                    audioFile = UtilityFile.createAudioFile(UtilityFile.getFilePath());
+                    audioFile = FileUtility.createFile(FileUtility.FILE_UTILITY_TYPE_TEMP, null, "amr");
                     if (audioFile == null) {
                         onError("录制语音错误");
                     } else if (!isStart) {

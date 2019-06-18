@@ -103,8 +103,8 @@ public class ToastUtility {
      *
      * @param text The text.
      */
-    public static void showShort(Context context, final CharSequence text) {
-        show(context, text == null ? NULL : text, Toast.LENGTH_SHORT);
+    public static void showShort(final CharSequence text) {
+        show(LibraryConstants.getContext(), text == null ? NULL : text, Toast.LENGTH_SHORT);
     }
 
     /**
@@ -112,8 +112,8 @@ public class ToastUtility {
      *
      * @param resId The resource id for text.
      */
-    public static void showShort(Context context, @StringRes final int resId) {
-        show(context, resId, Toast.LENGTH_SHORT);
+    public static void showShort(@StringRes final int resId) {
+        show(LibraryConstants.getContext(), resId, Toast.LENGTH_SHORT);
     }
 
     /**
@@ -122,8 +122,8 @@ public class ToastUtility {
      * @param resId The resource id for text.
      * @param args  The args.
      */
-    public static void showShort(Context context, @StringRes final int resId, final Object... args) {
-        show(context, resId, Toast.LENGTH_SHORT, args);
+    public static void showShort(@StringRes final int resId, final Object... args) {
+        show(LibraryConstants.getContext(), resId, Toast.LENGTH_SHORT, args);
     }
 
     /**
@@ -141,8 +141,8 @@ public class ToastUtility {
      *
      * @param text The text.
      */
-    public static void showLong(Context context, final CharSequence text) {
-        show(context, text == null ? NULL : text, Toast.LENGTH_LONG);
+    public static void showLong(final CharSequence text) {
+        show(LibraryConstants.getContext(), text == null ? NULL : text, Toast.LENGTH_LONG);
     }
 
     /**
@@ -150,8 +150,8 @@ public class ToastUtility {
      *
      * @param resId The resource id for text.
      */
-    public static void showLong(Context context, @StringRes final int resId) {
-        show(context, resId, Toast.LENGTH_LONG);
+    public static void showLong(@StringRes final int resId) {
+        show(LibraryConstants.getContext(), resId, Toast.LENGTH_LONG);
     }
 
     /**
@@ -160,8 +160,8 @@ public class ToastUtility {
      * @param resId The resource id for text.
      * @param args  The args.
      */
-    public static void showLong(Context context, @StringRes final int resId, final Object... args) {
-        show(context, resId, Toast.LENGTH_LONG, args);
+    public static void showLong(@StringRes final int resId, final Object... args) {
+        show(LibraryConstants.getContext(), resId, Toast.LENGTH_LONG, args);
     }
 
     /**
@@ -179,9 +179,9 @@ public class ToastUtility {
      *
      * @param layoutId ID for an XML layout resource to load.
      */
-    public static View showCustomShort(Context context, @LayoutRes final int layoutId) {
-        final View view = getView(context, layoutId);
-        show(context, view, Toast.LENGTH_SHORT);
+    public static View showCustomShort(@LayoutRes final int layoutId) {
+        final View view = getView(LibraryConstants.getContext(), layoutId);
+        show(LibraryConstants.getContext(), view, Toast.LENGTH_SHORT);
         return view;
     }
 
@@ -190,9 +190,9 @@ public class ToastUtility {
      *
      * @param layoutId ID for an XML layout resource to load.
      */
-    public static View showCustomLong(Context context, @LayoutRes final int layoutId) {
-        final View view = getView(context, layoutId);
-        show(context, view, Toast.LENGTH_LONG);
+    public static View showCustomLong(@LayoutRes final int layoutId) {
+        final View view = getView(LibraryConstants.getContext(), layoutId);
+        show(LibraryConstants.getContext(), view, Toast.LENGTH_LONG);
         return view;
     }
 

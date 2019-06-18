@@ -1,6 +1,9 @@
 package com.niupuyue.mylibrary.utils;
 
 import android.text.TextUtils;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -137,6 +140,72 @@ public class BaseUtility {
             } else {
                 list.remove(tag);
             }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void resetVisibility(View view, int visiablity) {
+        if (view == null || visiablity <= 0) {
+            return;
+        }
+        try {
+            view.setVisibility(visiablity);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void resetVisibility(View view, boolean isVisiable) {
+        if (view == null) return;
+        try {
+            view.setVisibility(isVisiable ? View.VISIBLE : View.INVISIBLE);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static boolean getVisibility(View view) {
+        if (null == view) return false;
+        try {
+            return view.getVisibility() == View.VISIBLE;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+
+    public static void setImageResource(ImageView imageView, int resourceId) {
+        if (null == imageView || resourceId <= 0) return;
+        try {
+            imageView.setImageResource(resourceId);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setText(TextView tv, String value) {
+        if (null == tv || isEmpty(value)) return;
+        try {
+            tv.setText(value);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setText(TextView tv, int resourceId) {
+        if (null == tv || resourceId <= 0) return;
+        try {
+            tv.setText(resourceId);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setText(TextView tv, Integer value) {
+        if (null == tv) return;
+        try {
+            tv.setText(String.valueOf(value));
         } catch (Exception ex) {
             ex.printStackTrace();
         }

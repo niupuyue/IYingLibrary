@@ -13,9 +13,6 @@ import android.support.annotation.RequiresApi;
 
 /**
  * 推送状态栏消息管理类
- * <p>
- * 图标，香聘，时间(最近一条消息的时间)
- * 消息展示样式    姓名：内容
  */
 public class NotificationUtility extends ContextWrapper {
 

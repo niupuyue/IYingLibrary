@@ -30,12 +30,12 @@ public class CustomToastUtility {
      * @param content  内容
      * @param duration Toast.LENGTH_SHORT or Toast.LENGTH_LONG
      */
-    private static void show(Context context, int type, String title, String content, int duration) {
+    private static void show(int type, String title, String content, int duration) {
         View toastView;
         if (duration == Toast.LENGTH_SHORT) {
-            toastView = ToastUtility.showCustomShort(context, R.layout.view_mytoast);
+            toastView = ToastUtility.showCustomShort(LibraryConstants.getContext(), R.layout.view_mytoast);
         } else {
-            toastView = ToastUtility.showCustomLong(context, R.layout.view_mytoast);
+            toastView = ToastUtility.showCustomLong(LibraryConstants.getContext(), R.layout.view_mytoast);
         }
 
         ImageView ivStat = toastView.findViewById(R.id.ivStat);
@@ -73,8 +73,8 @@ public class CustomToastUtility {
      *
      * @param title 标题，不能为空
      */
-    public static void makeTextSucess(Context context, String title) {
-        makeTextSucess(context, title, "");
+    public static void makeTextSucess(String title) {
+        makeTextSucess(title, "");
     }
 
     /**
@@ -82,8 +82,8 @@ public class CustomToastUtility {
      *
      * @param resourceID String资源ID
      */
-    public static void makeTextSucess(Context context, int resourceID) {
-        makeTextSucess(context, context.getString(resourceID));
+    public static void makeTextSucess(int resourceID) {
+        makeTextSucess(LibraryConstants.getContext().getString(resourceID));
     }
 
     /**
@@ -92,8 +92,8 @@ public class CustomToastUtility {
      * @param title   标题，不能为空
      * @param content 内容可以为空
      */
-    public static void makeTextSucess(Context context, String title, String content) {
-        makeTextSucess(context, title, content, Toast.LENGTH_LONG);
+    public static void makeTextSucess(String title, String content) {
+        makeTextSucess(title, content, Toast.LENGTH_LONG);
     }
 
     /**
@@ -102,12 +102,12 @@ public class CustomToastUtility {
      * @param resourceID 标题资源ID
      * @param content    内容可以为空
      */
-    public static void makeTextSucess(Context context, int resourceID, String content) {
-        makeTextSucess(context, context.getString(resourceID), content);
+    public static void makeTextSucess(int resourceID, String content) {
+        makeTextSucess(LibraryConstants.getContext().getString(resourceID), content);
     }
 
-    public static void makeTextSucess(Context context, String title, String content, int duration) {
-        show(context, TYPE_SUCCESS, title, content, duration);
+    public static void makeTextSucess(String title, String content, int duration) {
+        show(TYPE_SUCCESS, title, content, duration);
     }
 
     /**
@@ -115,8 +115,8 @@ public class CustomToastUtility {
      *
      * @param title 标题
      */
-    public static void makeTextError(Context context, String title) {
-        makeTextError(context, title, "");
+    public static void makeTextError(String title) {
+        makeTextError(title, "");
     }
 
     /**
@@ -124,8 +124,8 @@ public class CustomToastUtility {
      *
      * @param resourceID String资源ID
      */
-    public static void makeTextError(Context context, int resourceID) {
-        makeTextError(context, context.getString(resourceID));
+    public static void makeTextError(int resourceID) {
+        makeTextError(LibraryConstants.getContext().getString(resourceID));
     }
 
     /**
@@ -134,8 +134,8 @@ public class CustomToastUtility {
      * @param title   标题
      * @param content 内容
      */
-    public static void makeTextError(Context context, String title, String content) {
-        makeTextError(context, title, content, Toast.LENGTH_LONG);
+    public static void makeTextError(String title, String content) {
+        makeTextError(title, content, Toast.LENGTH_LONG);
     }
 
     /**
@@ -143,8 +143,8 @@ public class CustomToastUtility {
      *
      * @param resourceID String资源ID
      */
-    public static void makeTextError(Context context, int resourceID, String content) {
-        makeTextError(context, context.getString(resourceID), content, Toast.LENGTH_LONG);
+    public static void makeTextError(int resourceID, String content) {
+        makeTextError(LibraryConstants.getContext().getString(resourceID), content, Toast.LENGTH_LONG);
     }
 
     /**
@@ -153,50 +153,50 @@ public class CustomToastUtility {
      * @param title   标题
      * @param content 内容
      */
-    public static void makeTextError(Context context, String title, String content, int duration) {
-        show(context, TYPE_ERROR, title, content, duration);
+    public static void makeTextError(String title, String content, int duration) {
+        show(TYPE_ERROR, title, content, duration);
     }
 
     /**
      * 提示警告信息
      */
-    public static void makeTextWarn(Context context, String title) {
-        makeTextWarn(context, title, "");
+    public static void makeTextWarn(String title) {
+        makeTextWarn(title, "");
     }
 
     /**
      * 提示警告信息
      */
-    public static void makeTextWarn(Context context, int resourceID) {
-        makeTextWarn(context, context.getString(resourceID));
+    public static void makeTextWarn(int resourceID) {
+        makeTextWarn(LibraryConstants.getContext().getString(resourceID));
     }
 
     /**
      * 提示警告信息
      */
-    public static void makeTextWarn(Context context, int resourceID, String content) {
-        makeTextWarn(context, context.getString(resourceID), content);
+    public static void makeTextWarn(int resourceID, String content) {
+        makeTextWarn(LibraryConstants.getContext().getString(resourceID), content);
     }
 
     /**
      * 提示警告信息
      */
-    public static void makeTextWarn(Context context, int resourceID, int duration) {
-        makeTextWarn(context, context.getString(resourceID), "", Toast.LENGTH_LONG);
+    public static void makeTextWarn(int resourceID, int duration) {
+        makeTextWarn(LibraryConstants.getContext().getString(resourceID), "", Toast.LENGTH_LONG);
     }
 
     /**
      * 提示警告信息
      */
-    public static void makeTextWarn(Context context, String title, String content) {
-        makeTextWarn(context, title, content, Toast.LENGTH_LONG);
+    public static void makeTextWarn(String title, String content) {
+        makeTextWarn(title, content, Toast.LENGTH_LONG);
     }
 
     /**
      * 提示警告信息
      */
-    public static void makeTextWarn(Context context, String title, String content, int duration) {
-        show(context, TYPE_WARN, title, content, duration);
+    public static void makeTextWarn(String title, String content, int duration) {
+        show(TYPE_WARN, title, content, duration);
     }
 
 }

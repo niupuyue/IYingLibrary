@@ -3,6 +3,7 @@ package com.niupuyue.mylibrary.widgets.chatkeyboard.fragments;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.net.sip.SipSession;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.niupuyue.mylibrary.R;
+import com.niupuyue.mylibrary.utils.ListenerUtility;
 import com.niupuyue.mylibrary.widgets.chatkeyboard.callbacks.IMChatSendMessageCallback;
 import com.niupuyue.mylibrary.widgets.chatkeyboard.callbacks.IMShowRecordViewCallback;
 
@@ -59,10 +61,10 @@ public class IMChatKeyboardExpandFragment extends BaseIMFragment implements
     }
 
     public void initViewListener() {
-        UtilitySecurityListener.setOnClickListener(ivFeAlbum, this);
-        UtilitySecurityListener.setOnClickListener(ivFePhoto, this);
-        UtilitySecurityListener.setOnClickListener(ivFePosition, this);
-        UtilitySecurityListener.setOnClickListener(ivFeRecorder, this);
+        ListenerUtility.setOnClickListener(ivFeAlbum, this);
+        ListenerUtility.setOnClickListener(ivFePhoto, this);
+        ListenerUtility.setOnClickListener(ivFePosition, this);
+        ListenerUtility.setOnClickListener(ivFeRecorder, this);
     }
 
     /**
@@ -127,23 +129,19 @@ public class IMChatKeyboardExpandFragment extends BaseIMFragment implements
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.ivFeAlbum:
-                // 相册
+        int i = v.getId();
+        if (i == R.id.ivFeAlbum) {// 相册
 //                UtilityJobPermission.toMultipleImage(getActivity(), false, 6, null);
-                break;
-            case R.id.ivFePhoto:
-                // 拍照
+
+        } else if (i == R.id.ivFePhoto) {// 拍照
 //                UtilityJobPermission.openCamera(getActivity(), LibUtility.dp2px(150), LibUtility.dp2px(150), false);
-                break;
-            case R.id.ivFePosition:
-                // 点击之后跳转到定位页面
-                gotoSetLocation(getActivity());
-                break;
-            case R.id.ivFeRecorder:
-                // 语音消息
-                recorderOperation();
-                break;
+
+        } else if (i == R.id.ivFePosition) {// 点击之后跳转到定位页面
+            gotoSetLocation(getActivity());
+
+        } else if (i == R.id.ivFeRecorder) {// 语音消息
+            recorderOperation();
+
         }
     }
 }
