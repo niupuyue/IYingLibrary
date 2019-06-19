@@ -25,21 +25,9 @@ public class IMRecordPlayKitManager implements IMRecordPlayerCallback {
         }
     }
 
-    public void play(int position, boolean isAutoPlay) {
+    public void play(String url) {
         try {
-            this.position = position;
-            LoggerUtility.e("NPL", "当前正在播放的position" + position);
-//            ConversationInfo info = (ConversationInfo) mAdapter.getItems().get(position);
-//            if (info.isRecordPlayed) {
-//                isAutoPlay = false;
-//            }
-//            if (info == null || UtilitySecurity.isEmpty(info.content)) return;
-//            VoiceContent voiceModel = IMContentConverter.toVoiceModel(info.content);
-//            if (voiceModel == null) {
-//                CustomToast.makeTextError(R.string.im_chat_play_record_error);
-//                return;
-//            }
-//            recorderPlayKit.play(voiceModel.voice, position, isAutoPlay);
+            recorderPlayKit.play(url, 0, false);
         } catch (Exception ex) {
             ex.printStackTrace();
         }

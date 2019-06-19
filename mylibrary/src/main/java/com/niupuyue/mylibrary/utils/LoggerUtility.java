@@ -15,6 +15,8 @@ import java.util.Set;
  */
 public class LoggerUtility {
 
+    private static final String TAG = LoggerUtility.class.getSimpleName();
+
     public static void e(String tag, String value) {
         if (BaseUtility.isEmpty(tag) || BaseUtility.isEmpty(value)) return;
         Log.e(tag, value);
@@ -85,19 +87,36 @@ public class LoggerUtility {
     }
 
     public static void e(String value) {
-
+        if (BaseUtility.isEmpty(value)) return;
+        try {
+            Log.e(TAG, value);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     public static void e(boolean value) {
-
+        try {
+            Log.e(TAG, String.valueOf(value));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     public static void e(int value) {
-
+        try {
+            Log.e(TAG, String.valueOf(value));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     public static void e(long value) {
-
+        try {
+            Log.e(TAG, String.valueOf(value));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     public static void e(List<?> values) {
