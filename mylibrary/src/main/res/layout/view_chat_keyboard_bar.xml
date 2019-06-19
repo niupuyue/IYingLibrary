@@ -33,7 +33,7 @@
             android:textSize="12sp" />
 
         <!--输入框-->
-        <com.renrui.job.widget.im.chatkeyboard.IMChatPanelEditTextView
+        <com.niupuyue.mylibrary.widgets.PasteListenerEditTextView
             android:id="@+id/etVckbInput"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

@@ -31,6 +31,7 @@ import com.niupuyue.mylibrary.R;
 import com.niupuyue.mylibrary.utils.BaseUtility;
 import com.niupuyue.mylibrary.utils.CustomToastUtility;
 import com.niupuyue.mylibrary.utils.SharedPreferencesUtility;
+import com.niupuyue.mylibrary.widgets.PasteListenerEditTextView;
 import com.niupuyue.mylibrary.widgets.chatkeyboard.callbacks.IMChatEmojiClickCallback;
 import com.niupuyue.mylibrary.widgets.chatkeyboard.callbacks.IMChatSendMessageCallback;
 import com.niupuyue.mylibrary.widgets.chatkeyboard.callbacks.IMRecordingStateChangeCallback;
@@ -120,7 +121,7 @@ public class IMChatPanelView extends LinearLayout implements
     // 常用语
     private TextView tvVckbPhrase;
     // 输入框
-    private IMChatPanelEditTextView etVckbInput;
+    private PasteListenerEditTextView etVckbInput;
     // 表情按钮
     private CheckBox cbVckbSmily;
     // 扩展按钮
@@ -211,8 +212,8 @@ public class IMChatPanelView extends LinearLayout implements
         getMoreCheckBox().setOnCheckedChangeListener(this);
         getEtVckbInput().setOnTouchListener(this);
         getEtVckbInput().addTextChangedListener(this);
-        if (getEtVckbInput() instanceof IMChatPanelEditTextView) {
-            ((IMChatPanelEditTextView) getEtVckbInput()).setClipKeyboardCallback(new IMChatPanelEditTextView.OnClipKeyboardDelegateCallback() {
+        if (getEtVckbInput() instanceof PasteListenerEditTextView) {
+            ((PasteListenerEditTextView) getEtVckbInput()).setClipKeyboardCallback(new PasteListenerEditTextView.OnClipKeyboardDelegateCallback() {
                 @Override
                 public void onPaste() {
                     isClickPaste = true;
