@@ -1,7 +1,7 @@
 package com.niupuyue.mylibrary.widgets.chatkeyboard.utils;
 
 import com.danikula.videocache.HttpProxyCacheServer;
-import com.renrui.job.application.RRApplication;
+import com.niupuyue.mylibrary.utils.LibraryConstants;
 
 import java.io.File;
 
@@ -37,8 +37,8 @@ public class UtilityRecordCache {
     }
 
     private HttpProxyCacheServer newProxy() {
-        return new HttpProxyCacheServer.Builder(RRApplication.getAppContext())
-                .cacheDirectory(new File(RRApplication.getAppContext().getExternalCacheDir(), AUDIO_CACHE_PATH))
+        return new HttpProxyCacheServer.Builder(LibraryConstants.getContext())
+                .cacheDirectory(new File(LibraryConstants.getContext().getExternalCacheDir(), AUDIO_CACHE_PATH))
                 .maxCacheFilesCount(MAX_CACHE_FILE_COUNT)
                 .maxCacheSize(MAX_CACHE_FILE_STORAGE)// 最多存储10M的内容
                 .build();

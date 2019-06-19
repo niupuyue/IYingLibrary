@@ -89,7 +89,7 @@ public class IMChatKeyboardRecorderFragment extends BaseIMFragment implements
         @Override
         public void onError(int i, String s) {
             // 失败
-            CustomToastUtility.makeTextError(getContext(), "");
+            CustomToastUtility.makeTextError("");
         }
 
         @Override
@@ -228,7 +228,7 @@ public class IMChatKeyboardRecorderFragment extends BaseIMFragment implements
     private void initRecord() {
         try {
             if (ChatRecorderKit == null) {
-                ChatRecorderKit = new RecorderKit(iWxCallback, MAX_RECORD_TIME, UtilityTime.lSecondTimes, PERIOD_RECORD_TIME);
+                ChatRecorderKit = new RecorderKit(iWxCallback, MAX_RECORD_TIME, 1000, PERIOD_RECORD_TIME);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -344,7 +344,7 @@ public class IMChatKeyboardRecorderFragment extends BaseIMFragment implements
                 };
             }
             // 开始执行倒计时
-            mTimer.schedule(timerTasks, 0, UtilityTime.lSecondTimes);
+            mTimer.schedule(timerTasks, 0, 1000);
             isSending = true;
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -366,7 +366,7 @@ public class IMChatKeyboardRecorderFragment extends BaseIMFragment implements
             endTime = System.currentTimeMillis();
             // 获取移动的垂直距离
             instanceY = (int) Math.abs((endY - startY));
-            if (endTime - startTime < UtilityTime.lSecondTimes) {
+            if (endTime - startTime < 1000) {
                 // 如果时间间隔小于1秒，则取消发送
                 ChatRecorderKit.cancel();
             } else if (instanceY > RECORD_MOVE_OFFSET) {

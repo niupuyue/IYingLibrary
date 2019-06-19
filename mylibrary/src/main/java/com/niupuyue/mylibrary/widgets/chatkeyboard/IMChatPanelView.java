@@ -86,7 +86,7 @@ public class IMChatPanelView extends LinearLayout implements
                         mChatPanelStateChangeCallback.softKeyboardState(true);
                         isKeyboardShow = true;
                     }
-                    if (SharedPreferencesUtility.readInt(mContext, SharedPreferencesUtility.INT_KEYBOARD_HEIGHT) <= 0) {
+                    if (SharedPreferencesUtility.readInt(SharedPreferencesUtility.INT_KEYBOARD_HEIGHT) <= 0) {
                         getSoftKeyboardHeight();
                         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) getFragmentContainer().getLayoutParams();
                         layoutParams.height = getSoftKeyboardHeightLocal();
@@ -358,8 +358,8 @@ public class IMChatPanelView extends LinearLayout implements
             int statusHeight = ScreenUtil.getStatusBarHeight(mActivity);
             int softkeyboaryHeight = screenHegith - displayHeight - statusHeight;
             if (softkeyboaryHeight <= 0) return 0;
-            if (SharedPreferencesUtility.readInt(mContext, SharedPreferencesUtility.INT_KEYBOARD_HEIGHT) <= 0) {
-                SharedPreferencesUtility.writeInt(mContext, SharedPreferencesUtility.INT_KEYBOARD_HEIGHT, softkeyboaryHeight);
+            if (SharedPreferencesUtility.readInt(SharedPreferencesUtility.INT_KEYBOARD_HEIGHT) <= 0) {
+                SharedPreferencesUtility.writeInt(SharedPreferencesUtility.INT_KEYBOARD_HEIGHT, softkeyboaryHeight);
             }
             return softkeyboaryHeight;
         } catch (Exception ex) {
@@ -370,8 +370,8 @@ public class IMChatPanelView extends LinearLayout implements
 
     // 获取存储键盘的高度  如果有则直接返回，如果没有返回一个默认高度
     private int getSoftKeyboardHeightLocal() {
-        return SharedPreferencesUtility.readInt(mContext, SharedPreferencesUtility.INT_KEYBOARD_HEIGHT) <= 0 ?
-                ScreenUtil.getKeyboardInitHeight(mActivity) : SharedPreferencesUtility.readInt(mContext, SharedPreferencesUtility.INT_KEYBOARD_HEIGHT);
+        return SharedPreferencesUtility.readInt(SharedPreferencesUtility.INT_KEYBOARD_HEIGHT) <= 0 ?
+                ScreenUtil.getKeyboardInitHeight(mActivity) : SharedPreferencesUtility.readInt(SharedPreferencesUtility.INT_KEYBOARD_HEIGHT);
     }
 
     // 计算当前系统软键盘是否已经显示

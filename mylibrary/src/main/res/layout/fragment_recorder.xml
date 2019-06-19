@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
-            android:text="@string/chatting_keyboard_longpress_record"
+            android:text="上划取消"
             android:textColor="@color/gray_cccc"
             android:textSize="15sp" />
 

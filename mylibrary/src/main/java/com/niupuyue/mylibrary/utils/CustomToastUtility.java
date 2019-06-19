@@ -33,9 +33,9 @@ public class CustomToastUtility {
     private static void show(int type, String title, String content, int duration) {
         View toastView;
         if (duration == Toast.LENGTH_SHORT) {
-            toastView = ToastUtility.showCustomShort(LibraryConstants.getContext(), R.layout.view_mytoast);
+            toastView = ToastUtility.showCustomShort(R.layout.view_mytoast);
         } else {
-            toastView = ToastUtility.showCustomLong(LibraryConstants.getContext(), R.layout.view_mytoast);
+            toastView = ToastUtility.showCustomLong(R.layout.view_mytoast);
         }
 
         ImageView ivStat = toastView.findViewById(R.id.ivStat);

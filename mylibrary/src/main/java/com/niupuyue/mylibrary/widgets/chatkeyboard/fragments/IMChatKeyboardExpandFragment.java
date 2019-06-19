@@ -15,6 +15,7 @@ import com.niupuyue.mylibrary.R;
 import com.niupuyue.mylibrary.utils.ListenerUtility;
 import com.niupuyue.mylibrary.widgets.chatkeyboard.callbacks.IMChatSendMessageCallback;
 import com.niupuyue.mylibrary.widgets.chatkeyboard.callbacks.IMShowRecordViewCallback;
+import com.niupuyue.mylibrary.widgets.chatkeyboard.utils.CheckRecordPermission;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -82,16 +83,16 @@ public class IMChatKeyboardExpandFragment extends BaseIMFragment implements
     private void recorderOperation() {
         // 执行语音操作之前先自己起一个recorder，判断是否有权限，有执行下一步操作，没有则不执行
         try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                final String[] arrRequestPermission = UtilityPermission.getRequestPermission(getActivity(), Manifest.permission.RECORD_AUDIO, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-                if (arrRequestPermission.length > 0) {
-                    ActivityCompat.requestPermissions(getActivity(), arrRequestPermission, RequestJobPermissions.REQUEST_CODE_Open_Record);
-                } else {
-                    replaceExpandContainer();
-                }
-            } else {
-                replaceExpandContainer();
-            }
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                final String[] arrRequestPermission = UtilityPermission.getRequestPermission(getActivity(), Manifest.permission.RECORD_AUDIO, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+//                if (arrRequestPermission.length > 0) {
+//                    ActivityCompat.requestPermissions(getActivity(), arrRequestPermission, RequestJobPermissions.REQUEST_CODE_Open_Record);
+//                } else {
+//                    replaceExpandContainer();
+//                }
+//            } else {
+            replaceExpandContainer();
+//            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
