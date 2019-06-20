@@ -1,5 +1,7 @@
 package com.niupuyue.mylibrary.utils;
 
+import android.content.Context;
+import android.location.LocationManager;
 import android.os.Build;
 import android.util.Log;
 
@@ -139,6 +141,20 @@ public class AndroidUtility {
             ex.printStackTrace();
             return false;
         }
+    }
+
+    /**
+     * 判断手机是否开启位置信息
+     * @return
+     */
+    private static boolean isLocServiceEnable() {
+        LocationManager locationManager = (LocationManager) LibraryConstants.getContext().getSystemService(Context.LOCATION_SERVICE);
+        boolean gps = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        boolean network = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        if (gps || network) {
+            return true;
+        }
+        return false;
     }
 
 }
