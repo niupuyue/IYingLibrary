@@ -93,7 +93,7 @@ public class BaseUtility {
         return false;
     }
 
-    public static boolean contains(HashMap<String, ?> maps, String tag) {
+    public static boolean contains(Map<String, ?> maps, String tag) {
         if (isEmpty(maps) || isEmpty(tag)) return false;
         Set<String> keys = null;
         try {

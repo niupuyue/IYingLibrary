@@ -13,6 +13,13 @@ import android.os.Handler;
 import android.support.annotation.RequiresApi;
 
 import com.niupuyue.mylibrary.R;
+import com.niupuyue.mylibrary.model.NotificationModel;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 
 /**
@@ -22,21 +29,17 @@ public class NotificationUtility extends ContextWrapper {
 
     private NotificationManager notificationManager;
     private Notification.Builder notification;
-    public static String NOTIFICATION_STATIC_ID = "1001";
-    private static String NOTIFICATION_STATIC_NAME = "新消息通知";
-    private static int NOTIFICATION_CHANNEL_ID = 0x100;
 
-    private String title;
-    private String content;
-    private int icon;
-    private PendingIntent pendingIntent;
-    private int textColor;
+    private Map<String, NotificationChannel> channels;
 
     private NotificationUtility(Context context) {
         super(context);
         // 在构造方法中，声明NotificationManager对象
         if (null == notificationManager && null != context) {
             notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        }
+        if (BaseUtility.isEmpty(channels)) {
+            channels = new HashMap<>();
         }
     }
 
@@ -63,46 +66,47 @@ public class NotificationUtility extends ContextWrapper {
      * 创建Notification对象，针对Android8.0以下
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    private void createPushNotificationAfter3(final String content, final String title, final int icon, final PendingIntent pendingIntent) {
+    private void createPushNotificationAfter3(final NotificationModel model, final int notificationId) {
+        if (model == null || notificationId < 0) return;
         try {
             if (null == notificationManager) {
                 notificationManager = (NotificationManager) LibraryConstants.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
             }
             notification = new Notification.Builder(LibraryConstants.getContext());
-            notification.setSmallIcon(icon);
-            notification.setLargeIcon(BitmapFactory.decodeResource(LibraryConstants.getContext().getResources(), icon));
-            notification.setContentTitle(BaseUtility.isEmpty(title) ? LibraryConstants.getContext().getString(R.string.app_name) : title);
-            notification.setContentText(content);
-            notification.setPriority(Notification.PRIORITY_HIGH);
+            notification.setSmallIcon(model.getIcon());
+            notification.setLargeIcon(BitmapFactory.decodeResource(LibraryConstants.getContext().getResources(), model.getIcon()));
+            notification.setContentTitle(BaseUtility.isEmpty(model.getTitle()) ? LibraryConstants.getContext().getString(R.string.app_name) : model.getTitle());
+            notification.setContentText(model.getContent());
+            notification.setPriority(model.getPriority());
             notification.setWhen(System.currentTimeMillis());
-            notification.setContentIntent(pendingIntent);
-            notification.setAutoCancel(true);
-            notification.setDefaults(setSoundAndVibrate());
+            notification.setContentIntent(model.getPendingIntent());
+            notification.setAutoCancel(model.isAutoCancel());
+            notification.setDefaults(model.getDefaults());
             // 小米手机不要使用下面的方式设置，会直接执行intent
             if (AndroidUtility.PhoneType.Xiaomi != AndroidUtility.getPhoneType() && AndroidUtility.PhoneType.Meizu != AndroidUtility.getPhoneType()) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     notification.setVisibility(Notification.VISIBILITY_PUBLIC);
                     // 关联PendingIntent
-                    notification.setFullScreenIntent(pendingIntent, true);
+                    notification.setFullScreenIntent(model.getPendingIntent(), true);
                 }
             }
-            notificationManager.notify(NOTIFICATION_CHANNEL_ID, notification.build());
+            notificationManager.notify(notificationId, notification.build());
             // 如果是vivo手机，3秒之后关闭弹窗
             if (AndroidUtility.getPhoneType() == AndroidUtility.PhoneType.Vivo) {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        notificationManager.cancel(NOTIFICATION_CHANNEL_ID);
+                        notificationManager.cancel(notificationId);
                         notification = new Notification.Builder(LibraryConstants.getContext());
-                        notification.setSmallIcon(icon);
-                        notification.setLargeIcon(BitmapFactory.decodeResource(LibraryConstants.getContext().getResources(), icon));
-                        notification.setContentTitle(BaseUtility.isEmpty(title) ? LibraryConstants.getContext().getString(R.string.app_name) : title);
-                        notification.setContentText(content);
-                        notification.setPriority(Notification.PRIORITY_HIGH);
+                        notification.setSmallIcon(model.getIcon());
+                        notification.setLargeIcon(BitmapFactory.decodeResource(LibraryConstants.getContext().getResources(), model.getIcon()));
+                        notification.setContentTitle(BaseUtility.isEmpty(model.getTitle()) ? LibraryConstants.getContext().getString(R.string.app_name) : model.getTitle());
+                        notification.setContentText(model.getContent());
+                        notification.setPriority(model.getPriority());
                         notification.setWhen(System.currentTimeMillis());
-                        notification.setContentIntent(pendingIntent);
-                        notification.setAutoCancel(true);
-                        notificationManager.notify(NOTIFICATION_CHANNEL_ID, notification.build());
+                        notification.setContentIntent(model.getPendingIntent());
+                        notification.setAutoCancel(model.isAutoCancel());
+                        notificationManager.notify(notificationId, notification.build());
                     }
                 }, 3000);
             }
@@ -115,26 +119,28 @@ public class NotificationUtility extends ContextWrapper {
      * 创建Notification对象，针对Android8.0以上
      */
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void createPushNotificationAfter8(String content, String title, int icon, PendingIntent pendingIntent) {
+    private void createPushNotificationAfter8(NotificationModel model, String channelId, int notificationId) {
+        if (null == model || BaseUtility.isEmpty(channelId) || notificationId < 0) return;
         try {
             if (null == notificationManager) {
                 notificationManager = (NotificationManager) LibraryConstants.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
             }
-            NotificationChannel mChannel = new NotificationChannel(NOTIFICATION_STATIC_ID, NOTIFICATION_STATIC_NAME, NotificationManager.IMPORTANCE_HIGH);
-            notificationManager.createNotificationChannel(mChannel);
-            notification = new Notification.Builder(LibraryConstants.getContext(), NOTIFICATION_STATIC_ID)
-                    .setContentTitle(BaseUtility.isEmpty(title) ? LibraryConstants.getContext().getString(R.string.app_name) : title)
-                    .setContentText(content)
-                    .setSmallIcon(icon)
+            NotificationChannel channel = getChannel(channelId);
+            notificationManager.createNotificationChannel(channel);
+            notification = new Notification.Builder(LibraryConstants.getContext(), channelId)
+                    .setContentTitle(BaseUtility.isEmpty(model.getTitle()) ? LibraryConstants.getContext().getString(R.string.app_name) : model.getTitle())
+                    .setContentText(model.getContent())
+                    .setSmallIcon(model.getIcon())
+                    .setLargeIcon(BitmapFactory.decodeResource(LibraryConstants.getContext().getResources(), model.getLargeIcon()))
 //                    .setColor()
                     .setWhen(System.currentTimeMillis())
-                    .setAutoCancel(true)
-                    .setPriority(Notification.PRIORITY_HIGH)
+                    .setAutoCancel(model.isAutoCancel())
+                    .setPriority(model.getPriority())
                     .setOngoing(false)
-                    .setContentIntent(pendingIntent)
-                    .setDefaults(Notification.DEFAULT_ALL);
+                    .setContentIntent(model.getPendingIntent())
+                    .setDefaults(model.getDefaults());
             //发送
-            notificationManager.notify(NOTIFICATION_CHANNEL_ID, notification.build());
+            notificationManager.notify(notificationId, notification.build());
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -142,58 +148,71 @@ public class NotificationUtility extends ContextWrapper {
 
     /**
      * 显示Notification对象
-     *
-     * @param content 通知栏中的content
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    private void showPushNotification(String content, String title, int icon, PendingIntent pendingIntent) {
+    private void showPushNotification(NotificationModel model, String channelId, int notificationId) {
         if (checkSdkVersionMoreO()) {
-            createPushNotificationAfter8(content, title, icon, pendingIntent);
+            createPushNotificationAfter8(model, channelId, notificationId);
         } else {
-            createPushNotificationAfter3(content, title, icon, pendingIntent);
+            createPushNotificationAfter3(model, notificationId);
         }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void createChannel(String channelId, String channelName, int importance) {
+        if (BaseUtility.isEmpty(channelId) || BaseUtility.isEmpty(channelName) || importance < 0)
+            return;
+        if (BaseUtility.isEmpty(channels)) {
+            channels = new HashMap<>();
+        }
+        NotificationChannel channel;
+        try {
+            if (BaseUtility.contains(channels, channelId)) {
+                channel = channels.get(channelId);
+                if (BaseUtility.equals(channel.getName().toString(), channelName) && channel.getImportance() == importance) {
+                    return;
+                }
+            }
+            channel = new NotificationChannel(channelId, channelName, importance);
+            channels.put(channelId, channel);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public NotificationChannel getChannel(String channelId) {
+        if (BaseUtility.isEmpty(channelId) || BaseUtility.isEmpty(channels)) return null;
+        try {
+            if (!BaseUtility.contains(channels, channelId)) return null;
+            return channels.get(channelId);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<NotificationChannel> getChannels() {
+        if (BaseUtility.isEmpty(channels)) return null;
+        List<NotificationChannel> channelList = new ArrayList<>();
+        try {
+            Set<String> channelIds = channels.keySet();
+            for (String key : channelIds) {
+                if (BaseUtility.isEmpty(key) || channels.get(key) == null) continue;
+                channelList.add(channels.get(key));
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return channelList;
     }
 
     /**
      * 清除Notification对象
      */
-    public void clearPushNotification() {
+    public void clearPushNotification(int notification) {
         if (notificationManager != null) {
-            notificationManager.cancel(NOTIFICATION_CHANNEL_ID);
+            notificationManager.cancel(notification);
         }
-    }
-
-    /**
-     * 返回通知栏对象
-     */
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public Notification getNotification() {
-        if (null == notificationManager) {
-            notificationManager = (NotificationManager) LibraryConstants.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
-        }
-        if (notification != null) return notification.build();
-        if (checkSdkVersionMoreO()) {
-            NotificationChannel mChannel = new NotificationChannel(NOTIFICATION_STATIC_ID, NOTIFICATION_STATIC_NAME, NotificationManager.IMPORTANCE_DEFAULT);
-            notificationManager.createNotificationChannel(mChannel);
-            notification = new Notification.Builder(LibraryConstants.getContext(), NOTIFICATION_STATIC_ID)
-                    .setContentTitle(LibraryConstants.getContext().getString(R.string.app_name))
-                    .setContentText(null)
-                    .setWhen(System.currentTimeMillis())
-                    .setAutoCancel(true)
-                    .setPriority(Notification.PRIORITY_HIGH)
-                    .setOngoing(false)
-                    .setDefaults(Notification.DEFAULT_ALL);
-        } else {
-            notification = new Notification.Builder(LibraryConstants.getContext())
-                    .setSmallIcon(icon)
-                    .setContentTitle(BaseUtility.isEmpty(title) ? LibraryConstants.getContext().getString(R.string.app_name) : title)
-                    .setContentText(content)
-                    .setPriority(Notification.PRIORITY_HIGH)
-                    .setWhen(System.currentTimeMillis())
-                    .setOngoing(false)
-                    .setAutoCancel(true);
-        }
-        return notification.build();
     }
 
     /**
