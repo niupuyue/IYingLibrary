@@ -2,5 +2,6 @@
 <resources>
 
     <color name="gray_cccc">#cccccc</color>
+    <color name="white_fff">#ffffff</color>
 
 </resources>

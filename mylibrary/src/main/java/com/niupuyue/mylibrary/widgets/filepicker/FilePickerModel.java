@@ -1,5 +1,7 @@
 package com.niupuyue.mylibrary.widgets.filepicker;
 
+import com.niupuyue.mylibrary.widgets.filepicker.callback.IYFilePickerCallback;
+
 import java.io.Serializable;
 
 /**
@@ -16,9 +18,37 @@ public class FilePickerModel implements Serializable {
     private String[] filters;
     private boolean mutilyMode;
     private int folderIconStyle;
+    private int titleColor;
+    private long targetSize = 2;
+
+    private IYFilePickerCallback callback;
+
+    public IYFilePickerCallback getCallback() {
+        return callback;
+    }
+
+    public void setCallback(IYFilePickerCallback callback) {
+        this.callback = callback;
+    }
+
+    public long getTargetSize() {
+        return targetSize;
+    }
+
+    public void setTargetSize(long targetSize) {
+        this.targetSize = targetSize;
+    }
 
     public String getTitle() {
         return title;
+    }
+
+    public int getTitleColor() {
+        return titleColor;
+    }
+
+    public void setTitleColor(int titleColor) {
+        this.titleColor = titleColor;
     }
 
     public void setTitle(String title) {

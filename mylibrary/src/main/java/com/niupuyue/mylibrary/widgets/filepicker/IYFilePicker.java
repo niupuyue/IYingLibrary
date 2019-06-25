@@ -3,6 +3,7 @@ package com.niupuyue.mylibrary.widgets.filepicker;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 
 import com.niupuyue.mylibrary.utils.BaseUtility;
@@ -23,7 +24,7 @@ public class IYFilePicker {
     private String mTitle;
     private boolean mMutilyMode;
     private int mFolderIconStyle;
-    private String mStartPath;
+    private String mStartPath = Environment.getExternalStorageDirectory().getAbsolutePath();
     private String[] filters;
     private int mRequestCode;
 
