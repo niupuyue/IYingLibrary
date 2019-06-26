@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
@@ -34,7 +35,7 @@ public class FilePickerActivity extends AppCompatActivity implements View.OnClic
 
     private static final String TAG = FilePickerActivity.class.getSimpleName();
 
-    private EmptyRecycler mRecyclerView;
+    private RecyclerView mRecyclerView;
     private View mEmptyView;
     private TextView mTvCurrentPath;
     private TextView mTvBack;
@@ -54,6 +55,7 @@ public class FilePickerActivity extends AppCompatActivity implements View.OnClic
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         initExtras();
+        setTheme(R.style.IYFilePickerTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_file_picker);
         initViewByFindViewById();
@@ -79,7 +81,7 @@ public class FilePickerActivity extends AppCompatActivity implements View.OnClic
             return;
         }
         mModel = (FilePickerModel) getIntent().getExtras().getSerializable("params");
-        mChooseFileCallback = mModel.getCallback();
+//        mChooseFileCallback = mModel.getCallback();
     }
 
     private void initViewByFindViewById() {

@@ -21,15 +21,15 @@ public class FilePickerModel implements Serializable {
     private int titleColor;
     private long targetSize = 2;
 
-    private IYFilePickerCallback callback;
-
-    public IYFilePickerCallback getCallback() {
-        return callback;
-    }
-
-    public void setCallback(IYFilePickerCallback callback) {
-        this.callback = callback;
-    }
+//    private IYFilePickerCallback callback;
+//
+//    public IYFilePickerCallback getCallback() {
+//        return callback;
+//    }
+//
+//    public void setCallback(IYFilePickerCallback callback) {
+//        this.callback = callback;
+//    }
 
     public long getTargetSize() {
         return targetSize;

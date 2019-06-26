@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
 
+import com.niupuyue.mylibrary.R;
 import com.niupuyue.mylibrary.utils.BaseUtility;
+import com.niupuyue.mylibrary.widgets.filepicker.callback.IYFilePickerCallback;
 
 /**
  * Coder: niupuyue
@@ -26,7 +28,8 @@ public class IYFilePicker {
     private int mFolderIconStyle;
     private String mStartPath = Environment.getExternalStorageDirectory().getAbsolutePath();
     private String[] filters;
-    private int mRequestCode;
+    private IYFilePickerCallback mFilePickerCallback;
+    private int themeStyle = R.style.IYFilePickerTheme;
 
     public IYFilePicker with(Activity activity) {
         this.mActivity = activity;
@@ -70,13 +73,13 @@ public class IYFilePicker {
         return this;
     }
 
-    public IYFilePicker withRequestCode(int requestCode) {
-        this.mRequestCode = requestCode;
+    public IYFilePicker withFilePickerCallback(IYFilePickerCallback mFilePickerCallback) {
+        this.mFilePickerCallback = mFilePickerCallback;
         return this;
     }
 
     public void start() {
-        if (null == mActivity || null == mFragment || null == mAppFragment) {
+        if (null == mActivity && null == mFragment && null == mAppFragment) {
             throw new RuntimeException("必须传递相应的Activity或Fragment");
         }
         Intent intent = getIntent();
@@ -84,11 +87,11 @@ public class IYFilePicker {
         intent.putExtras(bundle);
 
         if (mActivity != null) {
-            mActivity.startActivityForResult(intent, mRequestCode);
+            mActivity.startActivity(intent);
         } else if (mFragment != null) {
-            mFragment.startActivityForResult(intent, mRequestCode);
+            mFragment.startActivity(intent);
         } else {
-            mAppFragment.startActivityForResult(intent, mRequestCode);
+            mAppFragment.startActivity(intent);
         }
     }
 
@@ -111,7 +114,9 @@ public class IYFilePicker {
         model.setFilters(filters);
         model.setFolderIconStyle(mFolderIconStyle);
         model.setStartPath(mStartPath);
-        bundle.putSerializable("param", model);
+        model.setMutilyMode(mMutilyMode);
+//        model.setCallback(mFilePickerCallback);
+        bundle.putSerializable("params", model);
         return bundle;
     }
 

@@ -8,10 +8,9 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?android:attr/actionBarSize"
-        app:navigationIcon="?attr/navigationIcon" />
+        android:layout_height="45dp"
+        android:background="@color/white_fff"
+        android:minHeight="45dp"/>
 
     <RelativeLayout
         android:id="@+id/rlFilePickerPath"
@@ -53,7 +52,7 @@
         android:textColor="@color/white_fff"
         android:visibility="gone" />
 
-    <com.niupuyue.mylibrary.widgets.filepicker.widget.EmptyRecycler
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/rvFilePickerRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
