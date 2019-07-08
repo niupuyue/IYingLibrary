@@ -4,7 +4,7 @@ import android.media.MediaRecorder;
 import android.os.Handler;
 import android.os.HandlerThread;
 
-import com.niupuyue.mylibrary.callbacks.IRecordCallback;
+import com.niupuyue.mylibrary.callbacks.IAudioRecordCallback;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +16,7 @@ import java.io.IOException;
  * Desc: 语音录制管理工具类
  * Version:
  */
-public class RecordUtility {
+public class AudioRecordUtility {
 
     // 输出的默认文件
     private File audioFile;
@@ -28,7 +28,7 @@ public class RecordUtility {
     private static int RECORDER_SIMPLE_RATE = 8000; // 录制的频率
     private static int RECORDER_SIMPLE_BIG_RATE = 67000; // 录制最大频率
     private Handler mHandler;
-    private final IRecordCallback mCallback;
+    private final IAudioRecordCallback mCallback;
     private final long mMaxRecordTime;
     private final long mMinRecordTime;
     private final long mVolumnPeriodTime;
@@ -55,7 +55,7 @@ public class RecordUtility {
         }
     };
 
-    public RecordUtility(IRecordCallback callback, long maxTime, long minTime, long mPeriodTime) {
+    public AudioRecordUtility(IAudioRecordCallback callback, long maxTime, long minTime, long mPeriodTime) {
         HandlerThread thread = new HandlerThread(IM_RECORDER_HANDLER);
         thread.start();
         this.mHandler = new Handler(thread.getLooper());

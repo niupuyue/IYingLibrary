@@ -7,7 +7,7 @@ package com.niupuyue.mylibrary.callbacks;
  * Desc: 语音录制接口回调
  * Version:
  */
-public interface IRecordCallback {
+public interface IAudioRecordCallback {
 
     /**
      * 录音成功
