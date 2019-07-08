@@ -89,6 +89,7 @@ public class ListenerUtility {
 
     /**
      * 添加文本输入框监听安全方法
+     *
      * @param editText
      * @param listener
      */
@@ -103,6 +104,7 @@ public class ListenerUtility {
 
     /**
      * 设置item点击事件安全方法
+     *
      * @param listView
      * @param listener
      */
@@ -117,6 +119,7 @@ public class ListenerUtility {
 
     /**
      * 设置item长摁事件安全方法
+     *
      * @param listView
      * @param listener
      */
@@ -131,6 +134,7 @@ public class ListenerUtility {
 
     /**
      * 设置选框按钮选中状态改变安全方法
+     *
      * @param listener
      * @param compoundButtons
      */
@@ -166,13 +170,14 @@ public class ListenerUtility {
 
     /**
      * 设置listview滚动事件安全方法
-     * @param listView
+     *
+     * @param absListView
      * @param listener
      */
-    public static void setOnScrollListener(ListView listView, AbsListView.OnScrollListener listener) {
-        if (null == listener || null == listView) return;
+    public static void setOnScrollListener(AbsListView absListView, AbsListView.OnScrollListener listener) {
+        if (null == listener || null == absListView) return;
         try {
-            listView.setOnScrollListener(listener);
+            absListView.setOnScrollListener(listener);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
