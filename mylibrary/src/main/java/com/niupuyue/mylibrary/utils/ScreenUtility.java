@@ -123,9 +123,8 @@ public class ScreenUtility {
      * @return
      */
     public static int px2dp(int value) {
-        int result = 0;
-
-        return result;
+        final float scale = LibraryConstants.getContext().getResources().getDisplayMetrics().densityDpi;
+        return (int) ((value * 160) / scale + 0.5f);
     }
 
 }
