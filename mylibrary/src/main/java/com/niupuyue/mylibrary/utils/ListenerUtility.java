@@ -1,5 +1,6 @@
 package com.niupuyue.mylibrary.utils;
 
+import android.support.v4.view.ViewPager;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -193,6 +194,21 @@ public class ListenerUtility {
             for (View view : views) {
                 if (null == view) continue;
                 view.getViewTreeObserver().addOnGlobalLayoutListener(listener);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * 设置ViewpagerchangeListener
+     */
+    public static void addOnPageChangeListener(ViewPager.OnPageChangeListener listener, ViewPager... viewPagers) {
+        if (null == listener || viewPagers == null) return;
+        try {
+            for (ViewPager viewPager : viewPagers) {
+                if (null == viewPager) continue;
+                viewPager.addOnPageChangeListener(listener);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
