@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RadioGroup;
 
 /**
  * Coder: niupuyue (牛谱乐)
@@ -17,69 +18,66 @@ import android.widget.ListView;
  */
 public class ListenerUtility {
 
-    public static void setOnClickListener(View view, View.OnClickListener listener) {
-        if (view == null || listener == null) return;
-        try {
-            view.setOnClickListener(listener);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
+    /**
+     * 添加点击事件安全方法
+     *
+     * @param listener
+     * @param views
+     */
     public static void setOnClickListener(View.OnClickListener listener, View... views) {
         if (listener == null || views == null) return;
         try {
             for (View view : views) {
                 if (view == null) continue;
-                setOnClickListener(view, listener);
+                view.setOnClickListener(listener);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
-    public static void setOnLongClickListener(View view, View.OnLongClickListener listener) {
-        if (null == null || null == listener) return;
-        try {
-            view.setOnLongClickListener(listener);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
+    /**
+     * 添加长摁时间安全方法
+     *
+     * @param listener
+     * @param views
+     */
     public static void setOnLongClickListener(View.OnLongClickListener listener, View... views) {
         if (null == listener || null == views) return;
         try {
             for (View view : views) {
                 if (null == null) continue;
-                setOnLongClickListener(view, listener);
+                view.setOnLongClickListener(listener);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
-    public static void setOnTouchListener(View view, View.OnTouchListener listener) {
-        if (view == null || listener == null) return;
-        try {
-            view.setOnTouchListener(listener);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
+    /**
+     * 添加触摸事件安全方法
+     *
+     * @param listener
+     * @param views
+     */
     public static void setOnTouchListener(View.OnTouchListener listener, View... views) {
         if (null == listener || null == views) return;
         try {
             for (View view : views) {
                 if (view == null) continue;
-                setOnTouchListener(view, listener);
+                view.setOnTouchListener(listener);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
+    /**
+     * 添加焦点改变安全方法
+     *
+     * @param view
+     * @param listener
+     */
     public static void setOnFocusChangeListener(View view, View.OnFocusChangeListener listener) {
         if (null == view || null == listener) return;
         try {
@@ -89,6 +87,11 @@ public class ListenerUtility {
         }
     }
 
+    /**
+     * 添加文本输入框监听安全方法
+     * @param editText
+     * @param listener
+     */
     public static void addTextChangeListener(EditText editText, TextWatcher listener) {
         if (null == editText || null == listener) return;
         try {
@@ -98,6 +101,11 @@ public class ListenerUtility {
         }
     }
 
+    /**
+     * 设置item点击事件安全方法
+     * @param listView
+     * @param listener
+     */
     public static void setOnItemCliclListener(ListView listView, AdapterView.OnItemClickListener listener) {
         if (null == listener || null == listView) return;
         try {
@@ -107,6 +115,11 @@ public class ListenerUtility {
         }
     }
 
+    /**
+     * 设置item长摁事件安全方法
+     * @param listView
+     * @param listener
+     */
     public static void setOnItemLongClickListener(ListView listView, AdapterView.OnItemLongClickListener listener) {
         if (null == listener || null == listView) return;
         try {
@@ -116,27 +129,46 @@ public class ListenerUtility {
         }
     }
 
-    public static void setOnCheckedChangeListener(CompoundButton cp, CompoundButton.OnCheckedChangeListener listener) {
-        if (null == cp || null == listener) return;
-        try {
-            cp.setOnCheckedChangeListener(listener);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
+    /**
+     * 设置选框按钮选中状态改变安全方法
+     * @param listener
+     * @param compoundButtons
+     */
     public static void setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener listener, CompoundButton... compoundButtons) {
         if (null == listener || null == compoundButtons) return;
         try {
             for (CompoundButton cp : compoundButtons) {
                 if (null == cp) continue;
-                setOnCheckedChangeListener(cp, listener);
+                cp.setOnCheckedChangeListener(listener);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
+    /**
+     * 设置单选框组选中状态改变监听安全方法
+     *
+     * @param listener
+     * @param radioGroups
+     */
+    public static void setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener listener, RadioGroup... radioGroups) {
+        if (null == listener || null == radioGroups) return;
+        try {
+            for (RadioGroup radioGroup : radioGroups) {
+                if (null == radioGroup) continue;
+                radioGroup.setOnCheckedChangeListener(listener);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * 设置listview滚动事件安全方法
+     * @param listView
+     * @param listener
+     */
     public static void setOnScrollListener(ListView listView, AbsListView.OnScrollListener listener) {
         if (null == listener || null == listView) return;
         try {
