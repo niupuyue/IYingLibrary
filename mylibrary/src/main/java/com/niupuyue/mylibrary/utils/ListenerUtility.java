@@ -2,6 +2,7 @@ package com.niupuyue.mylibrary.utils;
 
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.CompoundButton;
@@ -178,6 +179,21 @@ public class ListenerUtility {
         if (null == listener || null == absListView) return;
         try {
             absListView.setOnScrollListener(listener);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * 设置view的样式改变所引起的全局高度变化监听
+     */
+    public static void addOnGlobalLayoutListener(ViewTreeObserver.OnGlobalLayoutListener listener, View... views) {
+        if (null == listener || null == views) return;
+        try {
+            for (View view : views) {
+                if (null == view) continue;
+                view.getViewTreeObserver().addOnGlobalLayoutListener(listener);
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
