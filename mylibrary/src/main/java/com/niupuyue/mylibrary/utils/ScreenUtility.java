@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -96,13 +97,6 @@ public class ScreenUtility {
         bp = Bitmap.createBitmap(bmp, 0, statusBarHeight, width, height - statusBarHeight);
         view.destroyDrawingCache();
         return bp;
-    }
-
-    /**
-     * 获取屏幕分辨率
-     */
-    public static void getScreen() {
-
     }
 
     /**
