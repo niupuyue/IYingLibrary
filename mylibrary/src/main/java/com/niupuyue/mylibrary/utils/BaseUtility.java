@@ -1,5 +1,9 @@
 package com.niupuyue.mylibrary.utils;
 
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -218,6 +222,45 @@ public class BaseUtility {
         return false;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public static void setBackground(View view, Drawable drawable) {
+        if (null == view || null == drawable) return;
+        try {
+            view.setBackground(drawable);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setBackgroundResource(View tv, int resoueceID) {
+        if (tv == null)
+            return;
+
+        try {
+            tv.setBackgroundResource(resoueceID);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setBackgroundDrawable(View view, Drawable drawable) {
+        if (null == view || null == drawable) return;
+        try {
+            view.setBackgroundDrawable(drawable);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setBackgroundColor(View view, int color) {
+        if (view == null || color <= 0) return;
+        try {
+            view.setBackgroundColor(color);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public static void setImageResource(ImageView imageView, int resourceId) {
         if (null == imageView || resourceId <= 0) return;
         try {
@@ -227,6 +270,12 @@ public class BaseUtility {
         }
     }
 
+    /**
+     * 设置文本内容
+     *
+     * @param tv
+     * @param value
+     */
     public static void setText(TextView tv, String value) {
         if (null == tv || isEmpty(value)) return;
         try {
@@ -239,7 +288,7 @@ public class BaseUtility {
     public static void setText(TextView tv, int resourceId) {
         if (null == tv || resourceId <= 0) return;
         try {
-            tv.setText(resourceId);
+            tv.setText(LibraryConstants.getContext().getString(resourceId));
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -252,6 +301,65 @@ public class BaseUtility {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    /**
+     * 设置文本颜色
+     *
+     * @param tv
+     * @param color
+     */
+    public static void setTextColor(TextView tv, int color) {
+        if (null == tv || color <= 0) return;
+        try {
+            tv.setTextColor(ContextCompat.getColor(LibraryConstants.getContext(), color));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * 获取文本框内容
+     *
+     * @param tv
+     * @return
+     */
+    public static String getText(TextView tv) {
+        if (null == tv) return null;
+        try {
+            return tv.getText().toString().trim();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    public static void setHint(TextView tv, String value) {
+        if (null == tv) return;
+        try {
+            tv.setHint(value);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setHint(TextView tv, int resId) {
+        if (null == tv || resId <= 0) return;
+        try {
+            tv.setHint(LibraryConstants.getContext().getString(resId));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static String getHint(TextView tv) {
+        if (null == tv) return null;
+        try {
+            tv.getHint().toString().trim();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 
 }
