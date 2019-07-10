@@ -11,6 +11,12 @@ import com.niupuyue.mylibrary.callbacks.ITextviewClickable;
 import com.niupuyue.mylibrary.model.SpanModel;
 import com.niupuyue.mylibrary.widgets.SpanClickable;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -170,6 +176,50 @@ public class SpanStringUtility {
         }
 
         return lis;
+    }
+
+    /**
+     * 将对象转换成String类型
+     * @param obj
+     * @return
+     */
+    public static String serializeToString(Object obj) {
+        String serStr;
+        try {
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
+            objectOutputStream.writeObject(obj);
+            serStr = byteArrayOutputStream.toString("ISO-8859-1");
+            serStr = URLEncoder.encode(serStr, "UTF-8");
+            objectOutputStream.close();
+            byteArrayOutputStream.close();
+        } catch (Exception var4) {
+            var4.printStackTrace();
+            serStr = "";
+        }
+
+        return serStr;
+    }
+
+    /**
+     * String 字符串转换成Object对象
+     * @param str
+     * @return
+     */
+    public static Object deSerializationToObject(String str) {
+        Object obj;
+        try {
+            String redStr = URLDecoder.decode(str, "UTF-8");
+            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(redStr.getBytes("ISO-8859-1"));
+            ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
+            obj = objectInputStream.readObject();
+            objectInputStream.close();
+            byteArrayInputStream.close();
+        } catch (Exception var5) {
+            obj = null;
+        }
+
+        return obj;
     }
 
 }
