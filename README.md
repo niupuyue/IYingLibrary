@@ -11,7 +11,10 @@
 # 分类
  
 BaseUtiltiy          -->>  一些常用方法，如setText，getText等
+
 AndroidUtility       -->>  获取手机设备信息
+
 ScreenUtility        -->>  获取屏幕相关信息，如屏幕宽高，状态栏高度，px和dp的转化
+
 ListenerUtility      -->>  添加监听的安全方法，如点击事件，长按事件，AbsListView的item点击事件，触摸事件等
 
