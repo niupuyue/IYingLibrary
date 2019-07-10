@@ -1,11 +1,16 @@
 package com.niupuyue.mylibrary.utils;
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.os.Build;
 import android.util.Log;
 
 import java.lang.reflect.Method;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Locale;
 
 /**
  * Coder: niupuyue (牛谱乐)
@@ -145,6 +150,7 @@ public class AndroidUtility {
 
     /**
      * 判断手机是否开启位置信息
+     *
      * @return
      */
     private static boolean isLocServiceEnable() {
@@ -155,6 +161,37 @@ public class AndroidUtility {
             return true;
         }
         return false;
+    }
+
+    /**
+     * 获取当前应用的SHA1
+     *
+     * @return
+     */
+    public static String getSHA1() {
+        try {
+            PackageInfo info = LibraryConstants.getContext().getPackageManager().getPackageInfo(
+                    LibraryConstants.getContext().getPackageName(), PackageManager.GET_SIGNATURES);
+            byte[] cert = info.signatures[0].toByteArray();
+            MessageDigest md = MessageDigest.getInstance("SHA1");
+            byte[] publicKey = md.digest(cert);
+            StringBuffer hexString = new StringBuffer();
+            for (int i = 0; i < publicKey.length; i++) {
+                String appendString = Integer.toHexString(0xFF & publicKey[i])
+                        .toUpperCase(Locale.US);
+                if (appendString.length() == 1)
+                    hexString.append("0");
+                hexString.append(appendString);
+                hexString.append(":");
+            }
+            String result = hexString.toString();
+            return result.substring(0, result.length() - 1);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

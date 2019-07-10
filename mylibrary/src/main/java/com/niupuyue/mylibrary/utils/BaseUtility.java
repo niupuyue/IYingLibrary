@@ -206,7 +206,7 @@ public class BaseUtility {
     public static void resetVisibility(View view, boolean isVisiable) {
         if (view == null) return;
         try {
-            view.setVisibility(isVisiable ? View.VISIBLE : View.INVISIBLE);
+            view.setVisibility(isVisiable ? View.VISIBLE : View.GONE);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -360,6 +360,15 @@ public class BaseUtility {
             ex.printStackTrace();
         }
         return null;
+    }
+
+    public static void setGravity(TextView tv, int gravity) {
+        if (null == tv || gravity < 0) return;
+        try {
+            tv.setGravity(gravity);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
 }
