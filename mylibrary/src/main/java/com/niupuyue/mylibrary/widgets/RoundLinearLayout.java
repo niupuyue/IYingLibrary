@@ -27,11 +27,13 @@ public class RoundLinearLayout extends LinearLayout {
     public RoundLinearLayout(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         initView(context, attrs);
+        init();
     }
 
     public RoundLinearLayout(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initView(context, attrs);
+        init();
     }
 
     private void initView(Context context, AttributeSet attrs) {
@@ -56,6 +58,12 @@ public class RoundLinearLayout extends LinearLayout {
         super.onLayout(changed, l, t, r, b);
         rectF.set(0f, 0f, getMeasuredWidth(), getMeasuredHeight());
         setRoundPath();
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int height = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2, MeasureSpec.AT_MOST);
+        super.onMeasure(widthMeasureSpec, height);
     }
 
     @Override

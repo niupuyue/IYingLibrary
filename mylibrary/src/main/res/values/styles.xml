@@ -1,16 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="IYFilePickerTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/gray_cccc</item>
-        <item name="colorPrimaryDark">@color/gray_cccc</item>
-        <item name="colorAccent">@color/gray_cccc</item>
-        <item name="homeAsUpIndicator">@drawable/lfile_back1</item>
-        <item name="actionBarSize">36dp</item>
-        <item name="navigationIcon">@drawable/lfile_back1</item><!--返回icon-->
-        <!-- 溢出菜单图标颜色-->
-        <item name="colorControlNormal">@android:color/white</item>
-        <item name="actionMenuTextColor">@android:color/white</item>
-    </style>
-
 </resources>
