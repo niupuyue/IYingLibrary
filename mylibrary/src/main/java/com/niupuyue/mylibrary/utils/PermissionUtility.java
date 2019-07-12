@@ -1,9 +1,15 @@
 package com.niupuyue.mylibrary.utils;
 
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
+import android.net.Uri;
+import android.os.Build;
+
+import com.niupuyue.mylibrary.BuildConfig;
 
 /**
  * Coder: niupuyue (牛谱乐)
@@ -55,6 +61,97 @@ public class PermissionUtility {
         audioRecord = null;
 
         return true;
+    }
+
+    /**
+     * 跳转到App设置页面(系统设置)
+     */
+    public static void gotoSystemPermissionSetting() {
+        if (AndroidUtility.getPhoneType() == AndroidUtility.PhoneType.Huawei) {
+            // 华为
+            gotoHuaweiPermission();
+        } else if (AndroidUtility.getPhoneType() == AndroidUtility.PhoneType.Meizu) {
+            // 魅族
+            gotoMeizuPermission();
+        } else if (AndroidUtility.getPhoneType() == AndroidUtility.PhoneType.Xiaomi) {
+            // 小米
+            gotoMiuiPermission();
+        } else {
+            // 其他
+            getAppDetailSettingIntent();
+        }
+    }
+
+    /**
+     * 跳转到miui的权限管理页面
+     */
+    private static void gotoMiuiPermission() {
+        try { // MIUI 8
+            Intent localIntent = new Intent("miui.intent.action.APP_PERM_EDITOR");
+            localIntent.setClassName("com.miui.securitycenter", "com.miui.permcenter.permissions.PermissionsEditorActivity");
+            localIntent.putExtra("extra_pkgname", LibraryConstants.getContext().getPackageName());
+            LibraryConstants.getContext().startActivity(localIntent);
+        } catch (Exception e) {
+            try { // MIUI 5/6/7
+                Intent localIntent = new Intent("miui.intent.action.APP_PERM_EDITOR");
+                localIntent.setClassName("com.miui.securitycenter", "com.miui.permcenter.permissions.AppPermissionsEditorActivity");
+                localIntent.putExtra("extra_pkgname", LibraryConstants.getContext().getPackageName());
+                LibraryConstants.getContext().startActivity(localIntent);
+            } catch (Exception e1) { // 否则跳转到应用详情
+                LibraryConstants.getContext().startActivity(getAppDetailSettingIntent());
+            }
+        }
+    }
+
+    /**
+     * 跳转到魅族的权限管理系统
+     */
+    private static void gotoMeizuPermission() {
+        try {
+            Intent intent = new Intent("com.meizu.safe.security.SHOW_APPSEC");
+            intent.addCategory(Intent.CATEGORY_DEFAULT);
+            intent.putExtra("packageName", BuildConfig.APPLICATION_ID);
+            LibraryConstants.getContext().startActivity(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+            LibraryConstants.getContext().startActivity(getAppDetailSettingIntent());
+        }
+    }
+
+    /**
+     * 华为的权限管理页面
+     */
+    private static void gotoHuaweiPermission() {
+        try {
+            Intent intent = new Intent();
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            ComponentName comp = new ComponentName("com.huawei.systemmanager", "com.huawei.permissionmanager.ui.MainActivity");//华为权限管理
+            intent.setComponent(comp);
+            LibraryConstants.getContext().startActivity(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+            LibraryConstants.getContext().startActivity(getAppDetailSettingIntent());
+        }
+
+    }
+
+    /**
+     * 获取应用详情页面intent（如果找不到要跳转的界面，也可以先把用户引导到系统设置页面）
+     *
+     * @return
+     */
+    private static Intent getAppDetailSettingIntent() {
+        Intent localIntent = new Intent();
+        localIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (Build.VERSION.SDK_INT >= 9) {
+            localIntent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
+            localIntent.setData(Uri.fromParts("package", LibraryConstants.getContext().getPackageName(), null));
+        } else if (Build.VERSION.SDK_INT <= 8) {
+            localIntent.setAction(Intent.ACTION_VIEW);
+            localIntent.setClassName("com.android.settings", "com.android.settings.InstalledAppDetails");
+            localIntent.putExtra("com.android.settings.ApplicationPkgName", LibraryConstants.getContext().getPackageName());
+        }
+        return localIntent;
     }
 
 }
