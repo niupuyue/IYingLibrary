@@ -1,6 +1,7 @@
 package com.niupuyue.mylibrary.utils;
 
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -209,6 +210,23 @@ public class ListenerUtility {
             for (ViewPager viewPager : viewPagers) {
                 if (null == viewPager) continue;
                 viewPager.addOnPageChangeListener(listener);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * 设置SwipeRefreshListener
+     */
+    public static void setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener listener, SwipeRefreshLayout... swipes) {
+        if (null == listener || null == swipes) {
+            return;
+        }
+        try {
+            for (SwipeRefreshLayout swipe : swipes) {
+                if (null == swipe) continue;
+                swipe.setOnRefreshListener(listener);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
