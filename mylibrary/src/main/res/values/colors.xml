@@ -7,4 +7,8 @@
     <color name="gray_666">#666666</color>
     <color name="red_4d52">#f04d52</color>
 
+
+    <color name="date_picker_text_light">#59B29C</color>
+    <color name="date_picker_text_dark">#333333</color>
+
 </resources>
