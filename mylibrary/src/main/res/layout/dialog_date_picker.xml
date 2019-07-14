@@ -57,15 +57,15 @@
         android:background="@color/white_fff"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingBottom="20dp"
-        android:paddingEnd="20dp"
         android:paddingStart="20dp"
-        android:paddingTop="15dp">
+        android:paddingTop="15dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="20dp">
 
-        <com.liuwan.demo.datepicker.PickerView
+        <com.niupuyue.mylibrary.widgets.datepicker.PickerView
             android:id="@+id/dpv_year"
             android:layout_width="0dp"
-            android:layout_height="@dimen/picker_view_height"
+            android:layout_height="160dp"
             android:layout_weight="3" />
 
         <TextView
@@ -77,10 +77,10 @@
             android:textColor="#333333"
             android:textSize="18sp" />
 
-        <com.liuwan.demo.datepicker.PickerView
+        <com.niupuyue.mylibrary.widgets.datepicker.PickerView
             android:id="@+id/dpv_month"
             android:layout_width="0dp"
-            android:layout_height="@dimen/picker_view_height"
+            android:layout_height="160dp"
             android:layout_weight="2" />
 
         <TextView
@@ -92,10 +92,10 @@
             android:textColor="#333333"
             android:textSize="18sp" />
 
-        <com.liuwan.demo.datepicker.PickerView
+        <com.niupuyue.mylibrary.widgets.datepicker.PickerView
             android:id="@+id/dpv_day"
             android:layout_width="0dp"
-            android:layout_height="@dimen/picker_view_height"
+            android:layout_height="160dp"
             android:layout_weight="2" />
 
         <TextView
@@ -107,10 +107,10 @@
             android:textColor="#333333"
             android:textSize="18sp" />
 
-        <com.liuwan.demo.datepicker.PickerView
+        <com.niupuyue.mylibrary.widgets.datepicker.PickerView
             android:id="@+id/dpv_hour"
             android:layout_width="0dp"
-            android:layout_height="@dimen/picker_view_height"
+            android:layout_height="160dp"
             android:layout_weight="2" />
 
         <TextView
@@ -123,10 +123,10 @@
             android:textColor="#333333"
             android:textSize="18sp" />
 
-        <com.liuwan.demo.datepicker.PickerView
+        <com.niupuyue.mylibrary.widgets.datepicker.PickerView
             android:id="@+id/dpv_minute"
             android:layout_width="0dp"
-            android:layout_height="@dimen/picker_view_height"
+            android:layout_height="160dp"
             android:layout_weight="2" />
 
         <TextView

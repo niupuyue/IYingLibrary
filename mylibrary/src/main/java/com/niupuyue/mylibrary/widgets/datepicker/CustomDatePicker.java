@@ -18,13 +18,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-/**
- * 说明：自定义时间选择器
- * 作者：liuwan1992
- * 添加时间：2016/9/28
- * 修改人：liuwan1992
- * 修改时间：2018/12/21
- */
 public class CustomDatePicker implements View.OnClickListener, PickerView.OnSelectListener {
 
     private Context mContext;
@@ -79,8 +72,8 @@ public class CustomDatePicker implements View.OnClickListener, PickerView.OnSele
      * @param endDateStr   日期字符串，格式为 yyyy-MM-dd HH:mm
      */
     public CustomDatePicker(Context context, Callback callback, String beginDateStr, String endDateStr) {
-        this(context, callback, TimeUtility.convertToLong(beginDateStr, TimeUtility.TIME_FORMAT),
-                TimeUtility.convertToLong(endDateStr, TimeUtility.TIME_FORMAT));
+        this(context, callback, TimeUtility.convertToLong(beginDateStr, TimeUtility.FORMAT_YYYY_MM_DD_HH_MM),
+                TimeUtility.convertToLong(endDateStr, TimeUtility.FORMAT_YYYY_MM_DD_HH_MM));
     }
 
     /**
@@ -495,7 +488,7 @@ public class CustomDatePicker implements View.OnClickListener, PickerView.OnSele
      */
     public boolean setSelectedTime(String dateStr, boolean showAnim) {
         return canShow() && !TextUtils.isEmpty(dateStr)
-                && setSelectedTime(TimeUtility.convertToLong(dateStr, TimeUtility.TIME_FORMAT), showAnim);
+                && setSelectedTime(TimeUtility.convertToLong(dateStr, TimeUtility.FORMAT_YYYY_MM_DD_HH_MM), showAnim);
     }
 
     /**
