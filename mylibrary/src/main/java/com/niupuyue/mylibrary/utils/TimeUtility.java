@@ -86,6 +86,46 @@ public class TimeUtility {
     }
 
     /**
+     * 获取分钟
+     */
+    public static int getMinutes(long time) {
+        Date date = new Date(time);
+        return date.getMinutes();
+    }
+
+    /**
+     * 获取小时
+     */
+    public static int getHour(long time) {
+        Date date = new Date(time);
+        return date.getHours();
+    }
+
+    /**
+     * 获取天(在当月的第几天)
+     */
+    public static int getDay(long time) {
+        Date date = new Date(time);
+        return date.getDay();
+    }
+
+    /**
+     * 获取月份
+     */
+    public static int getMonth(long time) {
+        Date date = new Date(time);
+        return date.getMonth();
+    }
+
+    /**
+     * 获取年份
+     */
+    public static int getYear(long time) {
+        Date date = new Date(time);
+        return date.getYear();
+    }
+
+    /**
      * 获取某年某月有多少天
      */
     public static int getDayOfMonth(int year, int month) {
@@ -161,7 +201,6 @@ public class TimeUtility {
             w = 0;
         return weekDays[w];
     }
-
 
     /**
      * 将日期格式的字符串转换为长整型
