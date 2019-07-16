@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
                 mTimerPicker.show(System.currentTimeMillis());
             }
         }, btn01);
+        Log.e("NPL",String.valueOf(TimeUtility.getDay(System.currentTimeMillis())));
     }
 
     private void showSimpleDialog() {

@@ -102,11 +102,16 @@ public class TimeUtility {
     }
 
     /**
-     * 获取天(在当月的第几天)
+     * 获取是星期几
      */
     public static int getDay(long time) {
         Date date = new Date(time);
         return date.getDay();
+    }
+
+    public static int getDate(long time) {
+        Date date = new Date(time);
+        return date.getDate();
     }
 
     /**
@@ -114,7 +119,7 @@ public class TimeUtility {
      */
     public static int getMonth(long time) {
         Date date = new Date(time);
-        return date.getMonth();
+        return date.getMonth() + 1;
     }
 
     /**
