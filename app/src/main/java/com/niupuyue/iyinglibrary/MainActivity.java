@@ -15,6 +15,7 @@ import com.niupuyue.mylibrary.utils.TimeUtility;
 import com.niupuyue.mylibrary.widgets.SimpleDialog;
 import com.niupuyue.mylibrary.widgets.datepicker.CustomDatePicker;
 
+import java.sql.Time;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -33,9 +34,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mTimerPicker.show(System.currentTimeMillis());
+                Log.e("NPL", TimeUtility.getDayStartTime(TimeUtility.getCalendar(System.currentTimeMillis())).getTimeInMillis() + "");
+                Log.e("NPL,一天的结束", TimeUtility.getDayEndTime(TimeUtility.getCalendar(System.currentTimeMillis())).getTimeInMillis() + "");
+                Log.e("NPL,一周的开始", TimeUtility.getDayStarByWeek(TimeUtility.getCalendar(System.currentTimeMillis())).getTimeInMillis() + "");
+                Log.e("NPL,一周的结束", TimeUtility.getDayEndByWeek(TimeUtility.getCalendar(System.currentTimeMillis())).getTimeInMillis() + "");
             }
         }, btn01);
-        Log.e("NPL",String.valueOf(TimeUtility.getDay(System.currentTimeMillis())));
+        Log.e("NPL", String.valueOf(TimeUtility.getDay(System.currentTimeMillis())));
     }
 
     private void showSimpleDialog() {

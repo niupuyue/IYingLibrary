@@ -161,11 +161,61 @@ public class TimeUtility {
         return calendar;
     }
 
+    /**
+     * 获取一天的开始
+     *
+     * @param calendar
+     * @return
+     */
     public static Calendar getDayStartTime(Calendar calendar) {
         calendar.set(Calendar.HOUR_OF_DAY, 0);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
+        return calendar;
+    }
+
+    /**
+     * 获取一天的结束
+     *
+     * @param calendar
+     * @return
+     */
+    public static Calendar getDayEndTime(Calendar calendar) {
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH) + 1);
+        return calendar;
+    }
+
+    /**
+     * 获取一周的开始
+     * @param calendar
+     * @return
+     */
+    public static Calendar getDayStarByWeek(Calendar calendar) {
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        calendar.set(Calendar.DAY_OF_WEEK, 2);
+        return calendar;
+    }
+
+    /**
+     * 获取一周的结束
+     * @param calendar
+     * @return
+     */
+    public static Calendar getDayEndByWeek(Calendar calendar) {
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        calendar.set(Calendar.DAY_OF_WEEK, 1);
+        calendar.set(Calendar.WEEK_OF_MONTH,calendar.get(Calendar.WEEK_OF_MONTH) + 1);
         return calendar;
     }
 
