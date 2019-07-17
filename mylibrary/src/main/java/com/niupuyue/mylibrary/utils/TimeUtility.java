@@ -192,6 +192,7 @@ public class TimeUtility {
 
     /**
      * 获取一周的开始
+     *
      * @param calendar
      * @return
      */
@@ -206,6 +207,7 @@ public class TimeUtility {
 
     /**
      * 获取一周的结束
+     *
      * @param calendar
      * @return
      */
@@ -215,7 +217,68 @@ public class TimeUtility {
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
         calendar.set(Calendar.DAY_OF_WEEK, 1);
-        calendar.set(Calendar.WEEK_OF_MONTH,calendar.get(Calendar.WEEK_OF_MONTH) + 1);
+        calendar.set(Calendar.WEEK_OF_MONTH, calendar.get(Calendar.WEEK_OF_MONTH) + 1);
+        return calendar;
+    }
+
+    /**
+     * 获取一个月的开始
+     */
+    public static Calendar getDayStarByMonth(Calendar calendar) {
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        calendar.set(Calendar.SECOND, 0);
+        return calendar;
+    }
+
+    /**
+     * 获取一个月的结束
+     *
+     * @param calendar
+     * @return
+     */
+    public static Calendar getDayEndByMonth(Calendar calendar) {
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH) + 1);
+        return calendar;
+    }
+
+    /**
+     * 获取一年的开始
+     *
+     * @param calendar
+     * @return
+     */
+    public static Calendar getDayStarByYear(Calendar calendar) {
+        calendar.set(Calendar.MILLISECOND, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        calendar.set(Calendar.MONTH, 0);
+        return calendar;
+    }
+
+    /**
+     * 获取一年的结束
+     *
+     * @param calendar
+     * @return
+     */
+    public static Calendar getDayEndByYear(Calendar calendar) {
+        calendar.set(Calendar.MILLISECOND, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MONTH, 0);
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        calendar.set(Calendar.YEAR, calendar.get(Calendar.YEAR) + 1);
         return calendar;
     }
 

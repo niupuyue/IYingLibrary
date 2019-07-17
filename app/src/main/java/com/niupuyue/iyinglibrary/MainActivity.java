@@ -38,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("NPL,一天的结束", TimeUtility.getDayEndTime(TimeUtility.getCalendar(System.currentTimeMillis())).getTimeInMillis() + "");
                 Log.e("NPL,一周的开始", TimeUtility.getDayStarByWeek(TimeUtility.getCalendar(System.currentTimeMillis())).getTimeInMillis() + "");
                 Log.e("NPL,一周的结束", TimeUtility.getDayEndByWeek(TimeUtility.getCalendar(System.currentTimeMillis())).getTimeInMillis() + "");
+                Log.e("NPL,一月的开始", TimeUtility.getDayStarByMonth(TimeUtility.getCalendar(System.currentTimeMillis())).getTimeInMillis() + "");
+                Log.e("NPL,一月的结束", TimeUtility.getDayEndByMonth(TimeUtility.getCalendar(System.currentTimeMillis())).getTimeInMillis() + "");
+                Log.e("NPL,一年的开始", TimeUtility.getDayStarByYear(TimeUtility.getCalendar(System.currentTimeMillis())).getTimeInMillis() + "");
+                Log.e("NPL,一年的结束", TimeUtility.getDayEndByYear(TimeUtility.getCalendar(System.currentTimeMillis())).getTimeInMillis() + "");
             }
         }, btn01);
         Log.e("NPL", String.valueOf(TimeUtility.getDay(System.currentTimeMillis())));
