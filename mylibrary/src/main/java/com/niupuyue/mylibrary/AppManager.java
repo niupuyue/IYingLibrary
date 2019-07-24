@@ -23,6 +23,10 @@ public class AppManager {
         private static final AppManager mAppManager = new AppManager();
     }
 
+    public static AppManager getInstance(){
+        return AppManagerHelper.mAppManager;
+    }
+
     private static Stack<Activity> activityStack;
 
     /**
