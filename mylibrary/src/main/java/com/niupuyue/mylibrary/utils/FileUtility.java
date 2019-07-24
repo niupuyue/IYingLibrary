@@ -4,6 +4,7 @@ import android.os.Environment;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.math.BigDecimal;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -67,16 +68,16 @@ public class FileUtility {
         return file;
     }
 
-    public static long getFileSize(String filepath) {
-        if (BaseUtility.isEmpty(filepath)) return -1;
+    public static String getFileSize(String filepath) {
+        if (BaseUtility.isEmpty(filepath)) return "0KB";
         try {
             File file = new File(filepath);
             if (file != null)
-                return getFileSize(file);
+                return getFormatSize(getFileSize(file));
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return -1;
+        return "0KB";
     }
 
     /**
@@ -87,7 +88,7 @@ public class FileUtility {
      */
     public static long getFileSize(File file) {
         if (file == null || !file.isFile()) return -1;
-        return file.length() / ONE_KB;
+        return file.length() ;
     }
 
     public static List<File> getFileList(String filePath) {
@@ -183,5 +184,55 @@ public class FileUtility {
         return null;
     }
 
+    /**
+     * 把文件大小（默认为B）转换单位
+     */
+    public static String getFormatSize(double size) {
+        double kiloByte = size / 1024;
+        if (kiloByte < 1) {
+            return "0K";
+        }
+
+        double megaByte = kiloByte / 1024;
+        if (megaByte < 1) {
+            BigDecimal result1 = new BigDecimal(Double.toString(kiloByte));
+            return result1.setScale(2, BigDecimal.ROUND_HALF_UP)
+                    .toPlainString() + "KB";
+        }
+
+        double gigaByte = megaByte / 1024;
+        if (gigaByte < 1) {
+            BigDecimal result2 = new BigDecimal(Double.toString(megaByte));
+            return result2.setScale(2, BigDecimal.ROUND_HALF_UP)
+                    .toPlainString() + "MB";
+        }
+
+        double teraBytes = gigaByte / 1024;
+        if (teraBytes < 1) {
+            BigDecimal result3 = new BigDecimal(Double.toString(gigaByte));
+            return result3.setScale(2, BigDecimal.ROUND_HALF_UP)
+                    .toPlainString() + "GB";
+        }
+        BigDecimal result4 = new BigDecimal(teraBytes);
+        return result4.setScale(2, BigDecimal.ROUND_HALF_UP).toPlainString()
+                + "TB";
+    }
+
+    /**
+     * 删除某个文件或某个文件夹下所有的文件
+     */
+    public static boolean deleteDir(File dir) {
+        if (dir != null && dir.isDirectory()) {
+            String[] children = dir.list();
+            for (String aChildren : children) {
+                boolean success = deleteDir(new File(dir, aChildren));
+                if (!success) {
+                    return false;
+                }
+            }
+        }
+        assert dir != null;
+        return dir.delete();
+    }
 
 }
