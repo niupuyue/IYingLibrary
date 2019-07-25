@@ -9,7 +9,7 @@ import java.util.List;
  * Coder: niupuyue
  * Date: 2019/6/14
  * Time: 12:51
- * Desc:
+ * Desc: sharedpreference存储
  * Version:
  */
 public class SharedPreferencesUtility {
