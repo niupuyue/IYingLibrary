@@ -17,7 +17,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -180,6 +182,7 @@ public class SpanStringUtility {
 
     /**
      * 将对象转换成String类型
+     *
      * @param obj
      * @return
      */
@@ -203,6 +206,7 @@ public class SpanStringUtility {
 
     /**
      * String 字符串转换成Object对象
+     *
      * @param str
      * @return
      */
@@ -210,7 +214,7 @@ public class SpanStringUtility {
         Object obj;
         try {
             String redStr = URLDecoder.decode(str, "UTF-8");
-            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(redStr.getBytes("ISO-8859-1"));
+            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(redStr.getBytes(StandardCharsets.ISO_8859_1));
             ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
             obj = objectInputStream.readObject();
             objectInputStream.close();
@@ -220,6 +224,30 @@ public class SpanStringUtility {
         }
 
         return obj;
+    }
+
+    /**
+     * 将String集合设置成固定字符串格式
+     */
+    public static String stringListFormatToString(List<String> res, String tag) {
+        if (BaseUtility.isEmpty(res) || BaseUtility.isEmpty(tag)) return null;
+        String result = "";
+        try {
+            for (int i = 0; i < BaseUtility.size(res); i++) {
+                if (i != 0) {
+                    result += tag;
+                }
+                result += res.get(i);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return result;
+    }
+
+    public static String stringListFormatToString(String[] res, String tag) {
+        if (BaseUtility.isEmpty(res) || BaseUtility.isEmpty(tag)) return null;
+        return stringListFormatToString(Arrays.asList(res), tag);
     }
 
 }
