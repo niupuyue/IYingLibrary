@@ -16,7 +16,7 @@ import java.io.IOException;
  * Desc: 语音录制管理工具类
  * Version:
  */
-public class AudioRecordUtility {
+public class AudioCaptureUtility {
 
     // 输出的默认文件
     private File audioFile;
@@ -55,7 +55,7 @@ public class AudioRecordUtility {
         }
     };
 
-    public AudioRecordUtility(IAudioRecordCallback callback, long maxTime, long minTime, long mPeriodTime) {
+    public AudioCaptureUtility(IAudioRecordCallback callback, long maxTime, long minTime, long mPeriodTime) {
         HandlerThread thread = new HandlerThread(IM_RECORDER_HANDLER);
         thread.start();
         this.mHandler = new Handler(thread.getLooper());
