@@ -108,6 +108,30 @@ public class BaseUtility {
         return contains(keys, tag);
     }
 
+    public static boolean startWith(String source, String tag) {
+        return startWith(source, tag, 0);
+    }
+
+    public static boolean startWith(String source, String tag, int offset) {
+        if (isEmpty(source) || isEmpty(tag)) return false;
+        try {
+            return source.startsWith(tag, offset);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+
+    public static boolean endWith(String source, String tag) {
+        if (isEmpty(source) || isEmpty(tag)) return false;
+        try {
+            return source.endsWith(tag);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+
     public static int size(Collection<?> data) {
         if (isEmpty(data)) return 0;
         try {
