@@ -174,6 +174,10 @@ public class BaseUtility {
         return TextUtils.equals(str1, str2);
     }
 
+    public static boolean equals(Object obj1,Object obj2){
+        return obj1.equals(obj2);
+    }
+
     public static boolean equalsIgnoreCase(String a, String b) {
         if (a == null && b == null)
             return true;
