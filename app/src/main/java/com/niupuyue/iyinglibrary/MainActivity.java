@@ -10,7 +10,10 @@ import android.widget.TextView;
 
 
 import com.niupuyue.mylibrary.callbacks.ISimpleDialogButtonClickCallback;
+import com.niupuyue.mylibrary.utils.AndroidUtility;
 import com.niupuyue.mylibrary.utils.ListenerUtility;
+import com.niupuyue.mylibrary.utils.LoggerUtility;
+import com.niupuyue.mylibrary.utils.NotchScreenUtility;
 import com.niupuyue.mylibrary.utils.TimeUtility;
 import com.niupuyue.mylibrary.widgets.SimpleDialog;
 import com.niupuyue.mylibrary.widgets.datepicker.CustomDatePicker;
@@ -33,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         ListenerUtility.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mTimerPicker.show(System.currentTimeMillis());
+//                mTimerPicker.show(System.currentTimeMillis());
                 Log.e("NPL", TimeUtility.getDayStartTime(TimeUtility.getCalendar(System.currentTimeMillis())).getTimeInMillis() + "");
                 Log.e("NPL,一天的结束", TimeUtility.getDayEndTime(TimeUtility.getCalendar(System.currentTimeMillis())).getTimeInMillis() + "");
                 Log.e("NPL,一周的开始", TimeUtility.getDayStarByWeek(TimeUtility.getCalendar(System.currentTimeMillis())).getTimeInMillis() + "");
@@ -42,6 +45,24 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("NPL,一月的结束", TimeUtility.getDayEndByMonth(TimeUtility.getCalendar(System.currentTimeMillis())).getTimeInMillis() + "");
                 Log.e("NPL,一年的开始", TimeUtility.getDayStarByYear(TimeUtility.getCalendar(System.currentTimeMillis())).getTimeInMillis() + "");
                 Log.e("NPL,一年的结束", TimeUtility.getDayEndByYear(TimeUtility.getCalendar(System.currentTimeMillis())).getTimeInMillis() + "");
+                if (NotchScreenUtility.isNotchSupportVersion()) {
+                    if (NotchScreenUtility.isNotch(MainActivity.this)) {
+                        if (AndroidUtility.getPhoneType() == AndroidUtility.PhoneType.Huawei) {
+                            //如果是华为手机
+                            int[] size = NotchScreenUtility.getNotchSizeForHuawei(MainActivity.this);
+                            LoggerUtility.e("NPL", "华为手机刘海屏的宽度是 = " + size[0]);
+                            LoggerUtility.e("NPL", "华为手机刘海屏的高度是 = " + size[1]);
+                        } else if (AndroidUtility.getPhoneType() == AndroidUtility.PhoneType.Xiaomi) {
+                            // 如果是小米手机
+                            int[] size = NotchScreenUtility.getNotchSizeForXiaomi(MainActivity.this);
+                            LoggerUtility.e("NPL", "小米手机刘海屏的宽度是 = " + size[0]);
+                            LoggerUtility.e("NPL", "小米手机刘海屏的高度是 = " + size[1]);
+                        } else if (AndroidUtility.getPhoneType() == AndroidUtility.PhoneType.Vivo || AndroidUtility.getPhoneType() == AndroidUtility.PhoneType.Oppo) {
+                            int height = NotchScreenUtility.getNotchHeight(MainActivity.this);
+                            LoggerUtility.e("NPL", "OPPO或者VIVO手机刘海屏的高度是 = " + height);
+                        }
+                    }
+                }
             }
         }, btn01);
         Log.e("NPL", String.valueOf(TimeUtility.getDay(System.currentTimeMillis())));
