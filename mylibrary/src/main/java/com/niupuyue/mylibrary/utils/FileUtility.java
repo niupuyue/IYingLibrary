@@ -88,7 +88,7 @@ public class FileUtility {
      */
     public static long getFileSize(File file) {
         if (file == null || !file.isFile()) return -1;
-        return file.length() ;
+        return file.length();
     }
 
     public static List<File> getFileList(String filePath) {
@@ -233,6 +233,20 @@ public class FileUtility {
         }
         assert dir != null;
         return dir.delete();
+    }
+
+    /**
+     * 获取外部存储私有从目录
+     */
+    public static String getExternalFileDir() {
+        return LibraryConstants.getContext().getExternalFilesDir("").getAbsolutePath();
+    }
+
+    /**
+     * 获取额外存储私有缓存，目录
+     */
+    public static String getExternamCacheDir() {
+        return LibraryConstants.getContext().getExternalCacheDir().getAbsolutePath();
     }
 
 }
