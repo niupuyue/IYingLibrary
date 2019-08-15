@@ -174,7 +174,7 @@ public class BaseUtility {
         return TextUtils.equals(str1, str2);
     }
 
-    public static boolean equals(Object obj1,Object obj2){
+    public static boolean equals(Object obj1, Object obj2) {
         return obj1.equals(obj2);
     }
 
@@ -293,6 +293,15 @@ public class BaseUtility {
         if (null == imageView || resourceId <= 0) return;
         try {
             imageView.setImageResource(resourceId);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void setEnable(boolean isEnable, View view) {
+        if (view == null) return;
+        try {
+            view.setEnabled(isEnable);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
