@@ -1,10 +1,16 @@
 package com.niupuyue.mylibrary.utils;
 
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.Rect;
 import android.os.Build;
+import android.support.annotation.RequiresApi;
+import android.view.DisplayCutout;
+import android.view.View;
 import android.view.WindowManager;
 
 import java.lang.reflect.Method;
+import java.util.List;
 
 /**
  * Coder: niupuyue
@@ -40,7 +46,7 @@ public class NotchScreenUtility {
     /**
      * 获取手机屏幕旋转角度
      */
-    public static int getScreenAngle(Context context) {
+    public static int getScreenAngle(Activity context) {
         return ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getRotation();
     }
 
@@ -48,14 +54,15 @@ public class NotchScreenUtility {
      * 判断手机是否存在刘海屏
      * 需要将四种类型的手机进行统一适配
      */
-    public static boolean isNotch(Context context) {
-        return isNotchVivo(context) || isNotchOppo(context) || isNotchXiaomi(context) || isNotchHuawei(context);
+    @RequiresApi(api = Build.VERSION_CODES.P)
+    public static boolean isNotch(Activity context) {
+        return isNotchVivo(context) || isNotchOppo(context) || isNotchXiaomi(context) || isNotchHuawei(context) || isNotchOthers(context);
     }
 
     /**
      * 判断vivo手机是否存在刘海屏
      */
-    public static boolean isNotchVivo(Context context) {
+    public static boolean isNotchVivo(Activity context) {
         boolean isNotch = false;
         try {
             ClassLoader loader = context.getClassLoader();
@@ -73,7 +80,7 @@ public class NotchScreenUtility {
     /**
      * 判断Oppo手机是否存在刘海屏
      */
-    public static boolean isNotchOppo(Context context) {
+    public static boolean isNotchOppo(Activity context) {
         boolean isNotch = false;
         try {
             isNotch = context.getPackageManager().hasSystemFeature("com.oppo.feature.screen.heterromorphism");
@@ -87,7 +94,7 @@ public class NotchScreenUtility {
     /**
      * 判断华为手机是否存在刘海屏
      */
-    public static boolean isNotchHuawei(Context context) {
+    public static boolean isNotchHuawei(Activity context) {
         boolean isNotch = false;
         try {
             ClassLoader loader = context.getClassLoader();
@@ -104,7 +111,7 @@ public class NotchScreenUtility {
     /**
      * 判断xiaomi手机是否存在刘海屏
      */
-    public static boolean isNotchXiaomi(Context context) {
+    public static boolean isNotchXiaomi(Activity context) {
         boolean isNotch = false;
         try {
             ClassLoader loader = context.getClassLoader();
@@ -119,9 +126,51 @@ public class NotchScreenUtility {
     }
 
     /**
+     * 判断其他手机是否是刘海屏
+     */
+    @RequiresApi(api = Build.VERSION_CODES.P)
+    public static boolean isNotchOthers(final Activity context) {
+        boolean isNotch = false;
+        View decorView = context.getWindow().getDecorView();
+        DisplayCutout cutout = decorView.getRootWindowInsets().getDisplayCutout();
+        if (cutout != null) {
+            List<Rect> rects = cutout.getBoundingRects();
+            if (BaseUtility.isEmpty(rects)) {
+                isNotch = false;
+            } else {
+                LoggerUtility.e("有刘海，数量是" + BaseUtility.size(rects));
+                isNotch = true;
+            }
+        }
+        return isNotch;
+    }
+
+    /**
+     * 获取其他手机刘海屏宽高
+     */
+    @RequiresApi(api = Build.VERSION_CODES.P)
+    public static int[] getNotchSizeForOthers(Activity context) {
+        int[] notchSize = new int[]{0, 0};
+        try {
+            View decorView = context.getWindow().getDecorView();
+            DisplayCutout cutout = decorView.getRootWindowInsets().getDisplayCutout();
+            if (cutout != null) {
+                List<Rect> rects = cutout.getBoundingRects();
+                if (!BaseUtility.isEmpty(rects)) {
+                    notchSize[0] = Math.abs(cutout.getSafeInsetRight() - cutout.getSafeInsetLeft());
+                    notchSize[1] = Math.abs(cutout.getSafeInsetBottom() - cutout.getSafeInsetTop());
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return notchSize;
+    }
+
+    /**
      * 获取华为手机刘海屏的宽高
      */
-    public static int[] getNotchSizeForHuawei(Context context) {
+    public static int[] getNotchSizeForHuawei(Activity context) {
         int[] notchSize = new int[]{0, 0};
         try {
             ClassLoader loader = context.getClassLoader();
@@ -138,7 +187,7 @@ public class NotchScreenUtility {
     /**
      * 获取小米手机刘海屏的宽高
      */
-    public static int[] getNotchSizeForXiaomi(Context context) {
+    public static int[] getNotchSizeForXiaomi(Activity context) {
         int[] notchSize = new int[]{0, 0};
         try {
             if (isNotchXiaomi(context)) {
@@ -164,7 +213,7 @@ public class NotchScreenUtility {
      * Oppo官网解释说，刘海屏的高度大于为80px
      * 由此我们可以认为，对于Vivo和Oppo手机来说，刘海屏的高度大约是状态栏的高度
      */
-    public static int getNotchHeight(Context context) {
+    public static int getNotchHeight(Activity context) {
         int notchHeight = 0;
         try {
             if (isNotchVivo(context) || isNotchOppo(context)) {

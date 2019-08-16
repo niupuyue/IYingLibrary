@@ -2,6 +2,7 @@
     package="com.niupuyue.mylibrary">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <meta-data android:name="android.vendor.full_screen" android:value="true"/>
 
     <application
         android:allowBackup="true"

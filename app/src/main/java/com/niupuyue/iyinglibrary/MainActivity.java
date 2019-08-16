@@ -1,5 +1,7 @@
 package com.niupuyue.iyinglibrary;
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         initTimerPicker();
         btn01 = findViewById(R.id.btn01);
         ListenerUtility.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.P)
             @Override
             public void onClick(View v) {
 //                mTimerPicker.show(System.currentTimeMillis());
@@ -60,6 +63,10 @@ public class MainActivity extends AppCompatActivity {
                         } else if (AndroidUtility.getPhoneType() == AndroidUtility.PhoneType.Vivo || AndroidUtility.getPhoneType() == AndroidUtility.PhoneType.Oppo) {
                             int height = NotchScreenUtility.getNotchHeight(MainActivity.this);
                             LoggerUtility.e("NPL", "OPPO或者VIVO手机刘海屏的高度是 = " + height);
+                        } else {
+                            int[] size = NotchScreenUtility.getNotchSizeForOthers(MainActivity.this);
+                            LoggerUtility.e("NPL", "其他手机刘海屏的宽度是" + size[0]);
+                            LoggerUtility.e("NPL", "其他手机刘海屏的高度是" + size[1]);
                         }
                     }
                 }
