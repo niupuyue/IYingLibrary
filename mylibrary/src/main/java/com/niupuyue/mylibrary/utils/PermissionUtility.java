@@ -1,15 +1,21 @@
 package com.niupuyue.mylibrary.utils;
 
+import android.Manifest;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 
 import com.niupuyue.mylibrary.BuildConfig;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Coder: niupuyue (牛谱乐)
@@ -61,6 +67,23 @@ public class PermissionUtility {
         audioRecord = null;
 
         return true;
+    }
+
+    /**
+     * 判断是否有所需要的权限
+     */
+    public static List<String> checkPermissions(Context context,List<String> permissions){
+        List<String> res = new ArrayList<>();
+        if (BaseUtility.isEmpty(permissions)) {
+            return res;
+        }else {
+            for (int i=0;i< BaseUtility.size(permissions);i++){
+                if (ContextCompat.checkSelfPermission(context,permissions.get(i)) != PackageManager.PERMISSION_GRANTED){
+                    res.add(permissions.get(i));
+                }
+            }
+        }
+        return res;
     }
 
     /**
