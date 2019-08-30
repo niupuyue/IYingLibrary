@@ -249,4 +249,14 @@ public class FileUtility {
         return LibraryConstants.getContext().getExternalCacheDir().getAbsolutePath();
     }
 
+    /**
+     * 文件查找
+     * 查找某个文件夹下的所有类型的文件
+     */
+    public static List<String> getFileByType(String filePath,String fileType){
+        List<String> res = new ArrayList<>();
+
+        return res;
+    }
+
 }

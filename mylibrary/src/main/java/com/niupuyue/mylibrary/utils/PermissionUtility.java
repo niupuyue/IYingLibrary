@@ -1,6 +1,7 @@
 package com.niupuyue.mylibrary.utils;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -41,7 +42,9 @@ public class PermissionUtility {
     public static int bufferSizeInBytes = 0;
 
     /**
-     * 判断是是否有录音权限
+     * <p>判断是是否有录音权限 只针对Vivo，Oppo，魅族手机</p>
+     * @param context
+     * @return
      */
     public static boolean isHasPermission(final Context context) {
         bufferSizeInBytes = 0;
@@ -67,6 +70,18 @@ public class PermissionUtility {
         audioRecord = null;
 
         return true;
+    }
+
+    /**
+     * 申请权限
+     * @param context
+     * @param permissions
+     * @return
+     */
+    public static List<String> askForPermission(Context context,List<String> permissions){
+        List<String> res = new ArrayList<>();
+
+        return res;
     }
 
     /**
