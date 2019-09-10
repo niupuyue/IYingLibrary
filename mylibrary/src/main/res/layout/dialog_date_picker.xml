@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_fff"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="取消"
+            android:textColor="#59B29C"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="请选择时间"
+            android:textColor="#59B29C"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="确定"
+            android:textColor="#59B29C"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#11112233" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_fff"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="20dp"
+        android:paddingTop="15dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="20dp">
+
+        <com.niupuyue.mylibrary.widgets.datepicker.PickerView
+            android:id="@+id/dpv_year"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:layout_weight="3" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="年"
+            android:textColor="#333333"
+            android:textSize="18sp" />
+
+        <com.niupuyue.mylibrary.widgets.datepicker.PickerView
+            android:id="@+id/dpv_month"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:layout_weight="2" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="月"
+            android:textColor="#333333"
+            android:textSize="18sp" />
+
+        <com.niupuyue.mylibrary.widgets.datepicker.PickerView
+            android:id="@+id/dpv_day"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:layout_weight="2" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="日"
+            android:textColor="#333333"
+            android:textSize="18sp" />
+
+        <com.niupuyue.mylibrary.widgets.datepicker.PickerView
+            android:id="@+id/dpv_hour"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:layout_weight="2" />
+
+        <TextView
+            android:id="@+id/tv_hour_unit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="时"
+            android:textColor="#333333"
+            android:textSize="18sp" />
+
+        <com.niupuyue.mylibrary.widgets.datepicker.PickerView
+            android:id="@+id/dpv_minute"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:layout_weight="2" />
+
+        <TextView
+            android:id="@+id/tv_minute_unit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="分"
+            android:textColor="#333333"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

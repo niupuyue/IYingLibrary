@@ -1,2 +1,27 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.niupuyue.mylibrary" />
+    package="com.niupuyue.mylibrary">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <meta-data android:name="android.vendor.full_screen" android:value="true"/>
+
+    <application
+        android:allowBackup="true"
+        android:supportsRtl="true">
+
+        <!-- 适配全面屏 Android O vivo&oppo-->
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.2" />
+        <!-- 适配刘海屏、水滴屏 Android O 小米 -->
+        <meta-data
+            android:name="notch.config"
+            android:value="portrait|landscape" />
+        <!-- 适配刘海屏、水滴屏 Android O 华为 -->
+        <meta-data
+            android:name="android.notch_support"
+            android:value="true" />
+
+        <!--适配刘海屏、水滴屏 Android P Google提供的方案 -->
+        <meta-data android:name="android.vendor.full_screen" android:value="true"/>
+    </application>
+</manifest>
