@@ -88,7 +88,6 @@ public class YingHttp {
         return onesTag;
     }
 
-
     /**
      * tag取消网络请求
      */
