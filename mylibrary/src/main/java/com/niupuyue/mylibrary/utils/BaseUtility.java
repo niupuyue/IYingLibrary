@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -406,6 +407,29 @@ public class BaseUtility {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    /**
+     * 数组合并
+     * 需要使用对象类型
+     *
+     * @param first
+     * @param rest
+     * @param <T>
+     * @return
+     */
+    public static <T> T[] concatAll(T[] first, T[]... rest) {
+        int totalLength = first.length;
+        for (T[] array : rest) {
+            totalLength += array.length;
+        }
+        T[] result = Arrays.copyOf(first, totalLength);
+        int offset = first.length;
+        for (T[] array : rest) {
+            System.arraycopy(array, 0, result, offset, array.length);
+            offset += array.length;
+        }
+        return result;
     }
 
 }
