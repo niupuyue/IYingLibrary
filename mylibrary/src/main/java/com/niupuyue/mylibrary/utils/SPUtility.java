@@ -12,7 +12,7 @@ import java.util.List;
  * Desc: sharedpreference存储
  * Version:
  */
-public class SharedPreferencesUtility {
+public class SPUtility {
 
     private static final String TAG = SharedPreferences.class.getSimpleName();
     private static final String SHAREDPREFERENCES_NAME = "app_sharedpreference";
