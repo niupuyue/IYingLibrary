@@ -84,6 +84,7 @@ public class PubAdapter extends BaseAdapter {
 
     /**
      * 预加载数据加载的不同情况的样式
+     * 这里对外提供默认样式，当然也可以通过对外暴露的方法重新设定
      */
     private void initPreView() {
         try {
