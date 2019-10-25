@@ -1,8 +1,8 @@
 package com.niupuyue.mylibrary.utils;
 
+import android.annotation.TargetApi;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
@@ -33,16 +33,8 @@ public class BaseUtility {
         return null == character;
     }
 
-    public static boolean isEmpty(List<?> list) {
-        return null == list || list.size() == 0;
-    }
-
     public static boolean isEmpty(Object[] objs) {
         return null == objs || objs.length == 0;
-    }
-
-    public static boolean isEmpty(Set<?> set) {
-        return null == set || set.isEmpty() || set.size() == 0;
     }
 
     public static boolean isEmpty(Collection<?> collection) {
@@ -58,45 +50,16 @@ public class BaseUtility {
         return sourc.contains(tag);
     }
 
-    public static boolean contains(List<Integer> list, int tag) {
-        if (isEmpty(list)) return false;
+    public static <T> boolean contains(Collection<T> collection,T obj){
+        if (isEmpty(collection)) return false;
         try {
-            for (Integer value : list) {
-                if (value == tag) return true;
-            }
-        } catch (Exception ex) {
+            return collection.contains(obj);
+        }catch (Exception ex){
             ex.printStackTrace();
         }
         return false;
     }
 
-    public static boolean contains(List<String> list, String tag) {
-        if (isEmpty(list) || isEmpty(tag)) return false;
-        try {
-            for (String str : list) {
-                if (equals(str, tag)) {
-                    return true;
-                }
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return false;
-    }
-
-    public static boolean contains(Set<String> set, String tag) {
-        if (isEmpty(set) || isEmpty(tag)) return false;
-        try {
-            for (String obg : set) {
-                if (equals(obg, tag)) {
-                    return true;
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
 
     public static boolean contains(Map<String, ?> maps, String tag) {
         if (isEmpty(maps) || isEmpty(tag)) return false;
@@ -251,7 +214,7 @@ public class BaseUtility {
         return false;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public static void setBackground(View view, Drawable drawable) {
         if (null == view || null == drawable) return;
         try {
@@ -284,7 +247,7 @@ public class BaseUtility {
     public static void setBackgroundColor(View view, int color) {
         if (view == null || color <= 0) return;
         try {
-            view.setBackgroundColor(color);
+            view.setBackgroundColor(ContextCompat.getColor(LibraryConstants.getContext(),color));
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -393,7 +356,7 @@ public class BaseUtility {
     public static String getHint(TextView tv) {
         if (null == tv) return null;
         try {
-            tv.getHint().toString().trim();
+            return tv.getHint().toString().trim();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
